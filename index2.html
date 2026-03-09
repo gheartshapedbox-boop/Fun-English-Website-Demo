@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anh Ngu Fun English — Learn English. Love English.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@500;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Design tokens — same as index.html ─── */
+    :root {
+      --coral:       #f25c4b;
+      --coral-dark:  #c8402f;
+      --coral-deep:  #9e2e1e;
+      --yellow:      #f7ef5d;
+      --yellow-dark: #d4cc1a;
+      --blue:        #2b7fc4;
+      --blue-dark:   #1a5d96;
+      --ink:         #1c1720;
+      --ink-mid:     #3d3445;
+      --ink-light:   #7a6d8c;
+      --cream:       #fffdf0;
+      --cream-warm:  #fff8e1;
+      --white:       #ffffff;
+      --r-sm: 0.75rem;
+      --r-md: 1.25rem;
+      --r-lg: 2rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #fff;
+      color: #555;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ─── TOP BAR ─── */
+    .topbar {
+      background: var(--coral);
+      color: #fff;
+      text-align: center;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.42rem 1.5rem;
+    }
+    .topbar a { color: #fff; text-decoration: underline; margin-left: 0.35rem; }
+
+    /* ─── NAV ─── */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      background: #fff;
+      border-bottom: 3px solid var(--coral);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.7rem 1.5rem;
+      max-width: 1160px; margin: 0 auto;
+      gap: 1.5rem;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.7rem; flex-shrink: 0; }
+    .nav-logo img {
+      height: 50px; width: 50px;
+      border-radius: 10px; object-fit: cover;
+      border: 2px solid var(--ink);
+    }
+    .nav-logo-name {
+      font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 900;
+      color: var(--ink); line-height: 1.2;
+    }
+    .nav-logo-sub {
+      font-family: 'Nunito', sans-serif; font-size: 0.63rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--coral);
+    }
+    .nav-links { display: flex; align-items: center; gap: 0.05rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Nunito', sans-serif; font-size: 0.88rem; font-weight: 800;
+      color: var(--ink-mid); padding: 0.4em 0.85em; border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover { color: var(--coral); background: rgba(242,92,75,0.07); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.88rem;
+      padding: 0.58em 1.35em; border-radius: 999px;
+      background: var(--coral); color: #fff;
+      border: 2px solid var(--coral-dark);
+      box-shadow: 3px 3px 0 var(--coral-dark);
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s;
+      flex-shrink: 0; white-space: nowrap;
+      position: relative; overflow: hidden;
+    }
+    .nav-cta::before {
+      content: '';
+      position: absolute; inset: -4px; border-radius: 999px;
+      border: 2px solid var(--coral); opacity: 0;
+      animation: pulse-ring 2.8s ease-out infinite 1.5s;
+      pointer-events: none;
+    }
+    .nav-cta::after {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 55%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+      transform: skewX(-20deg);
+      animation: btn-shimmer 3.5s infinite 0.5s;
+      pointer-events: none;
+    }
+    .nav-cta:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--coral-dark); }
+    .nav-cta:active { transform: scale(0.96) !important; box-shadow: 1px 1px 0 var(--coral-dark) !important; }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: 2px solid var(--ink);
+      padding: 7px; border-radius: 8px; cursor: pointer;
+    }
+    .nav-hamburger span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative; min-height: 540px;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .hero-bg-wrap {
+      position: absolute; inset: 0;
+      background: linear-gradient(120deg, var(--ink) 0%, #2b1a3a 40%, #1a3a5c 100%);
+    }
+    .hero-bg-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; opacity: 0.18;
+      mix-blend-mode: luminosity;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(28,23,32,0.88) 45%, rgba(28,23,32,0.25) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; padding: 4.5rem 0; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--yellow); color: var(--ink);
+      font-family: 'Nunito', sans-serif; font-size: 0.77rem; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.35em 1em; border-radius: 999px;
+      border: 2px solid rgba(0,0,0,0.1); margin-bottom: 1.3rem;
+    }
+    .hero-dot { width: 7px; height: 7px; background: var(--coral); border-radius: 50%; animation: blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.35;transform:scale(1.6)} }
+
+    .hero-title {
+      font-family: 'Boogaloo', cursive;
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      line-height: 1.05; color: #fff;
+      margin-bottom: 0.55rem; letter-spacing: 0.01em;
+    }
+    .hero-title .accent { color: var(--yellow); }
+    .hero-tagline {
+      font-family: 'Nunito', sans-serif; font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+      font-weight: 900; color: rgba(255,255,255,0.65);
+      margin-bottom: 1.35rem; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .hero-body { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.75; max-width: 480px; margin-bottom: 2rem; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Nunito', sans-serif; font-weight: 900;
+      padding: 0.72em 1.9em; border-radius: 999px; font-size: 0.95rem;
+      cursor: pointer; border: 2.5px solid transparent;
+      transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s;
+      position: relative; overflow: hidden;
+    }
+    .btn:active { transform: scale(0.96) !important; }
+    .btn-coral {
+      background: var(--coral); color: #fff;
+      border-color: var(--coral-dark); box-shadow: 4px 4px 0 var(--coral-dark);
+    }
+    .btn-coral::after {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 55%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: skewX(-20deg);
+      animation: btn-shimmer 3.5s infinite 1.2s;
+      pointer-events: none;
+    }
+    .btn-coral:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--coral-dark); }
+    .btn-coral:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
+
+    /* Ripple element */
+    .btn-ripple {
+      position: absolute; border-radius: 50%;
+      background: rgba(255,255,255,0.38);
+      transform: translate(-50%, -50%) scale(0);
+      animation: ripple-out 0.55s ease-out forwards;
+      pointer-events: none;
+    }
+
+    /* ─── BUTTON KEYFRAMES ─── */
+    @keyframes btn-shimmer {
+      0%   { left: -100%; }
+      28%, 100% { left: 150%; }
+    }
+    @keyframes pulse-ring {
+      0%   { transform: scale(1); opacity: 0.55; }
+      100% { transform: scale(1.25); opacity: 0; }
+    }
+    @keyframes ripple-out {
+      to { transform: translate(-50%, -50%) scale(4); opacity: 0; }
+    }
+    .btn-outline-white { background: transparent; color: #fff; border-color: rgba(255,255,255,0.45); }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; flex-wrap: wrap;
+      margin-top: 3rem; padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.14);
+    }
+    .stat-n { font-family: 'Boogaloo', cursive; font-size: 2rem; color: var(--yellow); line-height: 1; }
+    .stat-l { font-size: 0.7rem; font-family: 'Nunito', sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.45); margin-top: 0.15rem; }
+
+    /* ─── INFO STRIP ─── */
+    .infostrip {
+      background: var(--cream-warm);
+      border-bottom: 1.5px solid rgba(0,0,0,0.07);
+    }
+    .infostrip-inner {
+      max-width: 1160px; margin: 0 auto; padding: 0.55rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    .infostrip-item {
+      display: flex; align-items: center; gap: 0.45rem;
+      font-family: 'Nunito', sans-serif; font-size: 0.78rem; font-weight: 700; color: var(--ink-mid);
+    }
+    .infostrip-item .icon { font-size: 0.9rem; }
+
+    /* ─── SECTIONS ─── */
+    .section { padding: 5rem 0; }
+    .section-cream { background: var(--cream); }
+    .section-dark { background: var(--ink); }
+    .section-coral { background: var(--coral); }
+
+    /* Section header */
+    .sec-kicker {
+      font-family: 'Nunito', sans-serif; font-size: 0.7rem; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--coral);
+      display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.55rem;
+    }
+    .sec-kicker::before, .sec-kicker::after { content: ''; display: block; height: 2px; width: 28px; background: currentColor; border-radius: 2px; flex-shrink: 0; }
+    .sec-kicker::after { display: none; }
+    .sec-kicker.center { justify-content: center; }
+    .sec-kicker.center::after { display: block; }
+    .sec-kicker-blue { color: var(--blue); }
+    .sec-kicker-white { color: rgba(255,255,255,0.5); }
+
+    .sec-h {
+      font-family: 'Boogaloo', cursive;
+      font-size: clamp(1.8rem, 4vw, 2.9rem);
+      color: var(--ink); line-height: 1.1; letter-spacing: 0.01em; margin-bottom: 0.55rem;
+    }
+    .sec-h .accent { color: var(--coral); }
+    .sec-h-white { color: #fff; }
+    .sec-h-yellow .accent { color: var(--yellow); }
+    .sec-desc { font-size: 1rem; color: var(--ink-light); line-height: 1.75; max-width: 540px; margin-bottom: 2.5rem; }
+    .sec-desc-white { color: rgba(255,255,255,0.6); }
+    .sec-head { margin-bottom: 3rem; }
+    .sec-head.center { text-align: center; }
+    .sec-head.center .sec-desc { margin-left: auto; margin-right: auto; }
+    .sec-head.center .sec-kicker { justify-content: center; }
+    .sec-head.center .sec-kicker::after { display: block; }
+
+    /* ─── ABOUT ─── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: center; }
+    .about-img-wrap {
+      position: relative; border-radius: var(--r-lg);
+      overflow: visible;
+    }
+    .about-img-box {
+      border-radius: var(--r-lg); overflow: hidden;
+      aspect-ratio: 4/3; position: relative;
+      border: 2px solid rgba(0,0,0,0.08);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    .about-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .about-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(242,92,75,0.28), transparent 60%); }
+    .about-badge {
+      position: absolute; bottom: -1.3rem; right: -1.3rem;
+      background: var(--yellow); border: 3px solid var(--ink);
+      border-radius: var(--r-md); padding: 0.9rem 1.2rem;
+      text-align: center; transform: rotate(3deg);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .about-badge .bn { font-family: 'Boogaloo', cursive; font-size: 1.9rem; color: var(--ink); line-height: 1; }
+    .about-badge .bl { font-family: 'Nunito', sans-serif; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink); opacity: 0.7; margin-top: 0.1rem; }
+    .about-checks { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 1.75rem; margin-bottom: 2rem; }
+    .about-check {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--ink-mid);
+    }
+    .chk {
+      width: 26px; height: 26px; flex-shrink: 0;
+      background: var(--yellow); border: 2px solid var(--ink);
+      border-radius: 6px; display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 900; color: var(--ink);
+    }
+
+    /* ─── COURSES GRID ─── */
+    .courses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+    .course-card {
+      background: #fff; border-radius: var(--r-md); overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      border: 1.5px solid rgba(0,0,0,0.07);
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+    }
+    .course-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.14); }
+    .course-thumb {
+      position: relative; aspect-ratio: 16/10; overflow: hidden;
+    }
+    .course-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .course-card:hover .course-thumb img { transform: scale(1.06); }
+    .course-thumb-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,23,32,0.6) 0%, transparent 55%); }
+    .course-badge {
+      position: absolute; top: 0.75rem; left: 0.75rem;
+      font-family: 'Nunito', sans-serif; font-size: 0.66rem; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 0.28em 0.8em; border-radius: 999px; border: 2px solid currentColor;
+    }
+    .cb-k { color: var(--coral); background: rgba(242,92,75,0.12); }
+    .cb-t { color: var(--blue); background: rgba(43,127,196,0.12); }
+    .cb-a { color: #1c8a1c; background: rgba(28,138,28,0.12); }
+    .course-body { padding: 1.3rem 1.4rem; }
+    .course-name { font-family: 'Boogaloo', cursive; font-size: 1.35rem; color: var(--ink); margin-bottom: 0.2rem; }
+    .course-ages { font-family: 'Nunito', sans-serif; font-size: 0.75rem; font-weight: 800; color: var(--coral); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.07em; }
+    .course-desc { font-size: 0.87rem; color: #777; line-height: 1.65; margin-bottom: 0.9rem; }
+    .course-meta { display: flex; gap: 1rem; font-family: 'Nunito', sans-serif; font-size: 0.75rem; font-weight: 800; color: var(--ink-light); margin-bottom: 1rem; }
+    .course-cta {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-family: 'Nunito', sans-serif; font-size: 0.85rem; font-weight: 900;
+      color: var(--coral); border-bottom: 1.5px solid var(--coral);
+      padding-bottom: 1px; transition: gap 0.18s;
+    }
+    .course-cta:hover { gap: 0.65rem; }
+
+    /* ─── SCHEDULE ─── */
+    .sched-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid rgba(0,0,0,0.07); flex-wrap: wrap; }
+    .sched-tab {
+      font-family: 'Nunito', sans-serif; font-size: 0.85rem; font-weight: 800;
+      padding: 0.5em 1.25em; border-radius: 999px; cursor: pointer;
+      border: 2px solid transparent; color: var(--ink-mid); background: none;
+      transition: all 0.18s;
+    }
+    .sched-tab.active { background: var(--coral); color: #fff; border-color: var(--coral-dark); box-shadow: 3px 3px 0 var(--coral-dark); }
+    .sched-tab:not(.active):hover { background: rgba(242,92,75,0.08); color: var(--coral); }
+    .sched-panel { display: none; }
+    .sched-panel.active { display: block; }
+
+    .sched-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .sched-table thead th {
+      font-family: 'Nunito', sans-serif; font-size: 0.72rem; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      background: var(--coral); color: #fff;
+      padding: 0.75rem 1rem; text-align: left;
+    }
+    .sched-table thead th:first-child { border-radius: 8px 0 0 0; }
+    .sched-table thead th:last-child { border-radius: 0 8px 0 0; }
+    .sched-table tbody tr { border-bottom: 1px solid rgba(0,0,0,0.06); transition: background 0.12s; }
+    .sched-table tbody tr:hover { background: var(--cream); }
+    .sched-table tbody tr:last-child { border-bottom: none; }
+    .sched-table tbody td { padding: 0.85rem 1rem; color: #666; }
+    .sched-table tbody td:first-child { font-family: 'Nunito', sans-serif; font-weight: 800; color: var(--ink); }
+
+    .level-badge {
+      display: inline-block; font-family: 'Nunito', sans-serif; font-size: 0.66rem;
+      font-weight: 900; text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 0.2em 0.65em; border-radius: 999px; border: 1.5px solid currentColor;
+    }
+    .lv-k { color: var(--coral); background: rgba(242,92,75,0.08); }
+    .lv-t { color: var(--blue); background: rgba(43,127,196,0.08); }
+    .lv-a { color: #1c8a1c; background: rgba(28,138,28,0.08); }
+
+    .spots { font-family: 'Nunito', sans-serif; font-size: 0.78rem; font-weight: 800; color: #1c8a1c; }
+    .spots.few { color: var(--coral); }
+
+    .enroll-link {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-family: 'Nunito', sans-serif; font-size: 0.78rem; font-weight: 900;
+      color: var(--coral); border: 1.5px solid var(--coral);
+      padding: 0.3em 0.85em; border-radius: 999px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .enroll-link:hover { background: var(--coral); color: #fff; }
+
+    /* ─── WHY/FEATURES (dark bg) ─── */
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .feat-card {
+      text-align: center; padding: 2rem 1.25rem;
+      border-radius: var(--r-md);
+      background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.1);
+      transition: background 0.2s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .feat-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-5px); }
+    .feat-icon {
+      width: 60px; height: 60px; background: var(--yellow);
+      border-radius: var(--r-md); display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; margin: 0 auto 1rem; border: 2px solid rgba(0,0,0,0.12);
+    }
+    .feat-title { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 900; color: #fff; margin-bottom: 0.4rem; }
+    .feat-desc { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+    /* ─── TEAM ─── */
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .team-card {
+      background: #fff; border-radius: var(--r-md); overflow: hidden;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.08); border: 1.5px solid rgba(0,0,0,0.06);
+      text-align: center;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+    }
+    .team-card:hover { transform: translateY(-6px); box-shadow: 0 14px 32px rgba(0,0,0,0.13); }
+    .team-photo { position: relative; aspect-ratio: 3/4; overflow: hidden; }
+    .team-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .team-card:hover .team-photo img { transform: scale(1.06); }
+    .team-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(242,92,75,0.45) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .team-card:hover .team-overlay { opacity: 1; }
+    .team-info { padding: 1rem 1.15rem 1.3rem; }
+    .team-name { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 900; color: var(--ink); margin-bottom: 0.2rem; }
+    .team-role { font-size: 0.8rem; color: var(--coral); font-family: 'Nunito', sans-serif; font-weight: 700; }
+    .team-bio { font-size: 0.78rem; color: #888; line-height: 1.5; margin-top: 0.4rem; }
+
+    /* ─── TESTIMONIALS ─── */
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+    .testi-card {
+      background: #fff; border-radius: var(--r-md); padding: 1.75rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07); border: 1.5px solid rgba(0,0,0,0.06);
+      position: relative;
+    }
+    .testi-card::before {
+      content: '"'; position: absolute; top: 0.5rem; right: 1.25rem;
+      font-family: 'Boogaloo', cursive; font-size: 4.5rem;
+      color: var(--coral); opacity: 0.1; line-height: 1;
+    }
+    .testi-stars { display: flex; gap: 0.2rem; margin-bottom: 0.75rem; }
+    .testi-stars span { color: var(--yellow-dark); font-size: 1rem; }
+    .testi-text { font-size: 0.9rem; color: #666; line-height: 1.75; margin-bottom: 1.25rem; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 0.75rem; }
+    .testi-avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--coral); }
+    .testi-name { font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 900; color: var(--ink); }
+    .testi-role { font-size: 0.73rem; color: var(--ink-light); }
+
+    /* ─── PARTNERS ─── */
+    .partners-strip {
+      padding: 3rem 0;
+      background: #fff;
+      border-top: 1.5px solid rgba(0,0,0,0.06);
+      border-bottom: 1.5px solid rgba(0,0,0,0.06);
+    }
+    .partners-label {
+      text-align: center; margin-bottom: 1.5rem;
+      font-family: 'Nunito', sans-serif; font-size: 0.72rem; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--ink-light);
+    }
+    .partners-row { display: flex; align-items: center; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+    .partner-img {
+      height: 36px; object-fit: contain;
+      filter: grayscale(1); opacity: 0.4;
+      transition: filter 0.2s, opacity 0.2s;
+    }
+    .partner-img:hover { filter: none; opacity: 1; }
+
+    /* ─── CONTACT ─── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 4.5rem; align-items: start; }
+    .ci-list { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
+    .ci { display: flex; align-items: flex-start; gap: 1rem; }
+    .ci-icon {
+      width: 46px; height: 46px; flex-shrink: 0;
+      border-radius: var(--r-sm); border: 2px solid var(--ink);
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .ic-c { background: var(--coral); color: #fff; }
+    .ic-b { background: var(--blue); color: #fff; }
+    .ic-y { background: var(--yellow); color: var(--ink); }
+    .ci-label { font-family: 'Nunito', sans-serif; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-light); margin-bottom: 0.2rem; }
+    .ci-val { font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--ink); }
+
+    .form-card {
+      background: #fff; border: 2.5px solid var(--ink);
+      border-radius: var(--r-lg); padding: 2.25rem;
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+    .form-ttl { font-family: 'Boogaloo', cursive; font-size: 1.65rem; color: var(--ink); margin-bottom: 0.2rem; }
+    .form-sub { font-size: 0.85rem; color: var(--ink-light); margin-bottom: 1.5rem; }
+    .fg { margin-bottom: 1rem; }
+    .fl { display: block; font-family: 'Nunito', sans-serif; font-size: 0.8rem; font-weight: 800; color: var(--ink-mid); margin-bottom: 0.3rem; }
+    .fi, .fsel, .fta {
+      width: 100%; font-family: 'Lato', sans-serif; font-size: 0.93rem; color: var(--ink);
+      background: var(--cream); border: 2px solid rgba(0,0,0,0.12); border-radius: 0.6rem;
+      padding: 0.65em 1em; outline: none;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+    .fi:focus, .fsel:focus, .fta:focus { border-color: var(--coral); box-shadow: 0 0 0 3px rgba(242,92,75,0.1); }
+    .fta { resize: vertical; min-height: 90px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-btn { width: 100%; justify-content: center; margin-top: 0.25rem; }
+
+    /* ─── FOOTER ─── */
+    .footer { background: var(--ink); padding: 4rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 2rem; }
+    .footer-brand-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .footer-brand-row img { height: 40px; width: 40px; border-radius: 8px; object-fit: cover; border: 2px solid rgba(255,255,255,0.15); }
+    .footer-brand-name { font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 900; color: #fff; }
+    .footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.42); line-height: 1.7; margin-bottom: 1.25rem; }
+    .footer-socials { display: flex; gap: 0.5rem; }
+    .footer-socials a {
+      width: 34px; height: 34px; background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.12); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Nunito', sans-serif; font-size: 0.7rem; font-weight: 900;
+      color: rgba(255,255,255,0.5); transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .footer-socials a:hover { background: var(--coral); color: #fff; border-color: var(--coral); }
+    .footer-col-title { font-family: 'Nunito', sans-serif; font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.38); margin-bottom: 1rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+    .footer-links a { font-family: 'Nunito', sans-serif; font-size: 0.87rem; font-weight: 700; color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-contact-row { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.65rem; }
+    .footer-contact-row .ico { color: var(--coral); font-size: 0.85rem; flex-shrink: 0; margin-top: 0.15rem; }
+    .footer-contact-row span { font-size: 0.84rem; color: rgba(255,255,255,0.48); line-height: 1.55; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: 0.77rem; color: rgba(255,255,255,0.24); }
+    .footer-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .footer-badge {
+      font-family: 'Nunito', sans-serif; font-size: 0.63rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 0.25em 0.7em; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.38);
+    }
+
+    /* ─── TOAST ─── */
+    .toast {
+      position: fixed; bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(5rem);
+      background: var(--ink); color: var(--white);
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem;
+      padding: 0.8em 1.75em; border-radius: 999px;
+      border: 2px solid rgba(255,255,255,0.12);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.22);
+      z-index: 1000; opacity: 0; white-space: nowrap;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; } .d2 { transition-delay: 0.17s; } .d3 { transition-delay: 0.26s; } .d4 { transition-delay: 0.35s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-badge { right: 1rem; }
+      .courses-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 768px) {
+      .testi-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+      .infostrip-item:last-child { display: none; }
+    }
+    @media (max-width: 640px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: #fff; padding: 1rem 1.5rem;
+        border-bottom: 2px solid rgba(0,0,0,0.1);
+        box-shadow: 0 4px 14px rgba(0,0,0,0.1); z-index: 100;
+      }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    Now Enrolling for 2026 &mdash; <a href="#contact">Register your free trial class today!</a>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="top">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo" aria-label="Anh Ngu Fun English">
+        <img src="brand_assests/Logo Fun English.jpg" alt="Fun English Logo" />
+        <div>
+          <div class="nav-logo-name">Anh Ngu Fun English</div>
+          <div class="nav-logo-sub">Learn &middot; Love &middot; Grow</div>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <a href="#contact" class="nav-cta">Enroll Now &rarr;</a>
+
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-wrap"></div>
+    <img src="https://placehold.co/1920x600/2b7fc4/2b7fc4" alt="" class="hero-bg-img" />
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-dot"></span>
+        Now Enrolling &mdash; All Ages Welcome!
+      </div>
+      <h1 class="hero-title">
+        Anh Ngu<br /><span class="accent">Fun English</span>
+      </h1>
+      <p class="hero-tagline">Learn English. Love English.</p>
+      <p class="hero-body">
+        A warm, playful English school where kids, teens, and adults discover
+        the joy of speaking &mdash; through games, stories, and real conversations
+        that build lasting confidence.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-coral">Enroll Now &rarr;</a>
+        <a href="#courses" class="btn btn-outline-white">See Courses</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-n">500+</div><div class="stat-l">Happy Students</div></div>
+        <div><div class="stat-n">8+</div><div class="stat-l">Years Teaching</div></div>
+        <div><div class="stat-n">15</div><div class="stat-l">Max Class Size</div></div>
+        <div><div class="stat-n">98%</div><div class="stat-l">Satisfaction Rate</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO STRIP -->
+  <div class="infostrip">
+    <div class="infostrip-inner">
+      <div class="infostrip-item"><span class="icon">&#128222;</span> Hotline: 0901 234 567</div>
+      <div class="infostrip-item"><span class="icon">&#128205;</span> 123 &#272;&#432;&#7901;ng L&ecirc; L&#7907;i, Qu&#7853;n 1, TP. H&#7891; Ch&iacute; Minh</div>
+      <div class="infostrip-item"><span class="icon">&#9200;</span> Mon &ndash; Sat: 8:00 AM &ndash; 8:00 PM</div>
+      <div class="infostrip-item"><span class="icon">&#128140;</span> hello@anhngufunenglish.vn</div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section section-cream" id="about">
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-img-wrap reveal">
+          <div class="about-img-box">
+            <img src="https://placehold.co/640x480/d9ecf8/2b7fc4?text=Our+Classroom" alt="Our classroom" />
+            <div class="about-img-overlay"></div>
+          </div>
+          <div class="about-badge">
+            <div class="bn">8+</div>
+            <div class="bl">Years of<br>Teaching</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="sec-kicker reveal">About Us</div>
+          <h2 class="sec-h reveal d1">Where English Becomes an <span class="accent">Adventure</span></h2>
+          <p class="sec-desc reveal d2">
+            At Anh Ngu Fun English, we believe learning a language should feel like play, not work.
+            Founded right here in our community, our school was built on a single idea: every student
+            learns better when they feel safe, encouraged, and genuinely having fun.
+          </p>
+          <p class="sec-desc reveal d2" style="margin-bottom:0;">
+            Our curriculum blends games, storytelling, and real-world conversations to build vocabulary,
+            grammar, and confidence &mdash; at exactly the right pace for each learner.
+          </p>
+          <div class="about-checks reveal d3">
+            <div class="about-check"><div class="chk">&#10003;</div>Certified and experienced English teachers</div>
+            <div class="about-check"><div class="chk">&#10003;</div>Curriculum designed for Vietnamese learners</div>
+            <div class="about-check"><div class="chk">&#10003;</div>Warm, supportive classroom environment</div>
+          </div>
+          <div class="reveal d4">
+            <a href="#contact" class="btn btn-coral">Book a Free Trial &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="section" id="courses">
+    <div class="container">
+      <div class="sec-head center">
+        <div class="sec-kicker center reveal">Our Courses</div>
+        <h2 class="sec-h reveal d1">A Class for Every <span class="accent">Learner</span></h2>
+        <p class="sec-desc reveal d2">Tailored programs for every age and level &mdash; because the best English class is one that fits you perfectly.</p>
+      </div>
+
+      <div class="courses-grid">
+
+        <div class="course-card reveal d1">
+          <div class="course-thumb">
+            <img src="https://placehold.co/600x375/fde8e4/f25c4b?text=Little+Explorers" alt="Kids Course" />
+            <div class="course-thumb-overlay"></div>
+            <span class="course-badge cb-k">Kids</span>
+          </div>
+          <div class="course-body">
+            <div class="course-name">Little Explorers</div>
+            <div class="course-ages">Ages 4&ndash;10</div>
+            <p class="course-desc">Songs, games, and storybooks make learning English feel like recess. Kids build a strong foundation while they play.</p>
+            <div class="course-meta"><span>&#128336; 90 min/class</span><span>&#128066; Ages 4&ndash;10</span></div>
+            <a href="#contact" class="course-cta">Enroll Now &rarr;</a>
+          </div>
+        </div>
+
+        <div class="course-card reveal d2">
+          <div class="course-thumb">
+            <img src="https://placehold.co/600x375/d9ecf8/2b7fc4?text=English+Boost" alt="Teens Course" />
+            <div class="course-thumb-overlay"></div>
+            <span class="course-badge cb-t">Teens</span>
+          </div>
+          <div class="course-body">
+            <div class="course-name">English Boost</div>
+            <div class="course-ages" style="color:var(--blue);">Ages 11&ndash;17</div>
+            <p class="course-desc">Real conversations, debate, and exam prep help teens gain the confidence to speak up in class and beyond.</p>
+            <div class="course-meta"><span>&#128336; 90 min/class</span><span>&#129489; Ages 11&ndash;17</span></div>
+            <a href="#contact" class="course-cta" style="color:var(--blue);border-color:var(--blue);">Enroll Now &rarr;</a>
+          </div>
+        </div>
+
+        <div class="course-card reveal d3">
+          <div class="course-thumb">
+            <img src="https://placehold.co/600x375/edf8e8/1c8a1c?text=Professional+English" alt="Adults Course" />
+            <div class="course-thumb-overlay"></div>
+            <span class="course-badge cb-a">Adults</span>
+          </div>
+          <div class="course-body">
+            <div class="course-name">Professional English</div>
+            <div class="course-ages" style="color:#1c8a1c;">Ages 18+</div>
+            <p class="course-desc">Work, travel, or daily life &mdash; our adult courses focus on practical, fluent English for real-world situations.</p>
+            <div class="course-meta"><span>&#128336; 120 min/class</span><span>&#128105; Ages 18+</span></div>
+            <a href="#contact" class="course-cta" style="color:#1c8a1c;border-color:#1c8a1c;">Enroll Now &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE / LICH KHAI GIANG -->
+  <section class="section section-cream" id="schedule">
+    <div class="container">
+      <div class="sec-head">
+        <div class="sec-kicker reveal">Class Schedule</div>
+        <h2 class="sec-h reveal d1">L&#7883;ch Khai Gi&#7843;ng / <span class="accent">Upcoming Classes</span></h2>
+        <p class="sec-desc reveal d2">Flexible schedules to fit your family&rsquo;s routine &mdash; morning, afternoon, and evening classes available.</p>
+      </div>
+
+      <div class="sched-tabs reveal">
+        <button class="sched-tab active" data-tab="kids">&#129308; Little Explorers (Kids)</button>
+        <button class="sched-tab" data-tab="teens">&#129489; English Boost (Teens)</button>
+        <button class="sched-tab" data-tab="adults">&#128105; Professional English (Adults)</button>
+      </div>
+
+      <!-- Kids -->
+      <div class="sched-panel active reveal" id="tab-kids">
+        <div style="overflow-x:auto; border-radius:var(--r-md); box-shadow:0 2px 16px rgba(0,0,0,0.07); border:1.5px solid rgba(0,0,0,0.06);">
+          <table class="sched-table">
+            <thead>
+              <tr><th>Class</th><th>Level</th><th>Days</th><th>Time</th><th>Start Date</th><th>Spots</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Little Stars A1</td>
+                <td><span class="level-badge lv-k">Beginner</span></td>
+                <td>Mon / Wed / Fri</td><td>8:00 &ndash; 9:30 AM</td>
+                <td>Mar 10, 2026</td>
+                <td><span class="spots">8 left</span></td>
+                <td><a href="#contact" class="enroll-link">Enroll &rarr;</a></td>
+              </tr>
+              <tr>
+                <td>Little Stars A2</td>
+                <td><span class="level-badge lv-k">Elementary</span></td>
+                <td>Tue / Thu / Sat</td><td>9:30 &ndash; 11:00 AM</td>
+                <td>Mar 15, 2026</td>
+                <td><span class="spots few">3 left!</span></td>
+                <td><a href="#contact" class="enroll-link">Enroll &rarr;</a></td>
+              </tr>
+              <tr>
+                <td>Fun Kids Weekend</td>
+                <td><span class="level-badge lv-k">All Levels</span></td>
+                <td>Sat &amp; Sun</td><td>8:00 &ndash; 11:00 AM</td>
+                <td>Mar 22, 2026</td>
+                <td><span class="spots">12 left</span></td>
+                <td><a href="#contact" class="enroll-link">Enroll &rarr;</a></td>
+              </tr>
+              <tr>
+                <td>Phonics Starters</td>
+                <td><span class="level-badge lv-k">Phonics</span></td>
+                <td>Mon / Wed</td><td>4:00 &ndash; 5:30 PM</td>
+                <td>Apr 1, 2026</td>
+                <td><span class="spots">10 left</span></td>
+                <td><a href="#contact" class="enroll-link">Enroll &rarr;</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Teens -->
+      <div class="sched-panel" id="tab-teens">
+        <div style="overflow-x:auto; border-radius:var(--r-md); box-shadow:0 2px 16px rgba(0,0,0,0.07); border:1.5px solid rgba(0,0,0,0.06);">
+          <table class="sched-table">
+            <thead>
+              <tr style="background:var(--blue);">
+                <th style="background:var(--blue);">Class</th>
+                <th style="background:var(--blue);">Level</th>
+                <th style="background:var(--blue);">Days</th>
+                <th style="background:var(--blue);">Time</th>
+                <th style="background:var(--blue);">Start Date</th>
+                <th style="background:var(--blue);">Spots</th>
+                <th style="background:var(--blue);"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Teen English A2</td>
+                <td><span class="level-badge lv-t">Elementary</span></td>
+                <td>Mon / Wed / Fri</td><td>4:30 &ndash; 6:00 PM</td>
+                <td>Mar 10, 2026</td>
+                <td><span class="spots">7 left</span></td>
+                <td><a href="#contact" class="enroll-link" style="color:var(--blue);border-color:var(--blue);">Enroll &rarr;</a></td>
+              </tr>
+              <tr>
+                <td>Teen English B1</td>
+                <td><span class="level-badge lv-t">Intermediate</span></td>
+                <td>Tue / Thu</td><td>5:00 &ndash; 6:30 PM</td>
+                <td>Mar 17, 2026</td>
+                <td><span class="spots few">2 left!</span></td>
+                <td><a href="#contact" class="enroll-link" style="color:var(--blue);border-color:var(--blue);">Enroll &rarr;</a></td>
+              </tr>
+              <tr>
+                <td>IELTS Prep Junior</td>
+                <td><span class="level-badge lv-t">Exam Prep</span></td>
+                <td>Sat &amp; Sun</td><td>1:00 &ndash; 4:00 PM</td>
+                <td>Mar 22, 2026</td>
+                <td><span class="spots">9 left</span></td>
+                <td><a href="#contact" class="enroll-link" style="color:var(--blue);border-color:var(--blue);">Enroll &rarr;</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Adults -->
+      <div class="sched-panel" id="tab-adults">
+        <div style="overflow-x:auto; border-radius:var(--r-md); box-shadow:0 2px 16px rgba(0,0,0,0.07); border:1.5px solid rgba(0,0,0,0.06);">
+          <table class="sched-table">
+            <thead>
+              <tr>
+                <th style="background:#1c8a1c;">Class</th>
+                <th style="background:#1c8a1c;">Level</th>
+                <th style="background:#1c8a1c;">Days</th>
+                <th style="background:#1c8a1c;">Time</th>
+                <th style="background:#1c8a1c;">Start Date</th>
+                <th style="background:#1c8a1c;">Spots</th>
+                <th style="background:#1c8a1c;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Business English A</td>
+                <td><span class="level-badge lv-a">Beginner</span></td>
+                <td>Mon / Wed / Fri</td><td>6:00 &ndash; 8:00 PM</td>
+                <td>Mar 10, 2026</td>
+                <td><span class="spots">11 left</span></td>
+                <td><a href="#contact" class="enroll-link" style="color:#1c8a1c;border-color:#1c8a1c;">Enroll &rarr;</a></td>
+              </tr>
+              <tr>
+                <td>Conversational English</td>
+                <td><span class="level-badge lv-a">Intermediate</span></td>
+                <td>Tue / Thu</td><td>6:30 &ndash; 8:30 PM</td>
+                <td>Mar 12, 2026</td>
+                <td><span class="spots few">4 left!</span></td>
+                <td><a href="#contact" class="enroll-link" style="color:#1c8a1c;border-color:#1c8a1c;">Enroll &rarr;</a></td>
+              </tr>
+              <tr>
+                <td>Weekend English</td>
+                <td><span class="level-badge lv-a">All Levels</span></td>
+                <td>Sat &amp; Sun</td><td>8:00 AM &ndash; 12:00 PM</td>
+                <td>Mar 21, 2026</td>
+                <td><span class="spots">13 left</span></td>
+                <td><a href="#contact" class="enroll-link" style="color:#1c8a1c;border-color:#1c8a1c;">Enroll &rarr;</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section section-dark" id="why">
+    <div class="container">
+      <div class="sec-head center">
+        <div class="sec-kicker center sec-kicker-white reveal">Why Choose Us</div>
+        <h2 class="sec-h sec-h-white sec-h-yellow reveal d1">Learning Here Just Feels <span class="accent">Different</span></h2>
+        <p class="sec-desc sec-desc-white reveal d2" style="margin:0 auto 2.5rem;">We have built an environment where students actually look forward to coming to class.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feat-card reveal d1">
+          <div class="feat-icon">&#127881;</div>
+          <div class="feat-title">Fun-First Classes</div>
+          <p class="feat-desc">Every lesson is packed with games, activities, and laughter. When learning is enjoyable, it sticks.</p>
+        </div>
+        <div class="feat-card reveal d2">
+          <div class="feat-icon">&#128104;&#8205;&#127979;</div>
+          <div class="feat-title">Expert Teachers</div>
+          <p class="feat-desc">All teachers are certified, experienced, and passionate about helping every student grow.</p>
+        </div>
+        <div class="feat-card reveal d3">
+          <div class="feat-icon">&#129309;</div>
+          <div class="feat-title">Small Class Groups</div>
+          <p class="feat-desc">Max 15 students per class ensures every learner gets real speaking time and personal attention.</p>
+        </div>
+        <div class="feat-card reveal d4">
+          <div class="feat-icon">&#128200;</div>
+          <div class="feat-title">Real Results</div>
+          <p class="feat-desc">Students consistently improve scores, confidence, and love of English &mdash; parents notice the difference.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR TEAM -->
+  <section class="section" id="team">
+    <div class="container">
+      <div class="sec-head center">
+        <div class="sec-kicker center reveal">Our Team</div>
+        <h2 class="sec-h reveal d1">Meet Our <span class="accent">Teachers</span></h2>
+        <p class="sec-desc reveal d2" style="margin:0 auto 2.5rem;">Our passionate educators bring warmth, expertise, and creativity to every single class.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card reveal d1">
+          <div class="team-photo">
+            <img src="https://placehold.co/300x400/fde8e4/c8402f?text=Ms.+Linh" alt="Ms. Linh" />
+            <div class="team-overlay"></div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Ms. Nguy&#7877;n Th&#7883; Linh</div>
+            <div class="team-role">Head Teacher &middot; Kids Program</div>
+            <p class="team-bio">8 years teaching experience. Specializes in phonics and early childhood English education.</p>
+          </div>
+        </div>
+        <div class="team-card reveal d2">
+          <div class="team-photo">
+            <img src="https://placehold.co/300x400/d9ecf8/1a5d96?text=Mr.+David" alt="Mr. David" />
+            <div class="team-overlay"></div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Mr. David Chen</div>
+            <div class="team-role">Senior Teacher &middot; Teens</div>
+            <p class="team-bio">CELTA certified. Expert in conversation-based learning and IELTS exam preparation.</p>
+          </div>
+        </div>
+        <div class="team-card reveal d3">
+          <div class="team-photo">
+            <img src="https://placehold.co/300x400/edf8e8/1c6b1c?text=Ms.+Sarah" alt="Ms. Sarah" />
+            <div class="team-overlay"></div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Ms. Sarah Johnson</div>
+            <div class="team-role">Native Speaker &middot; Adults</div>
+            <p class="team-bio">Native English speaker from Canada. Focuses on business communication and fluency.</p>
+          </div>
+        </div>
+        <div class="team-card reveal d4">
+          <div class="team-photo">
+            <img src="https://placehold.co/300x400/fff8e1/9e2e1e?text=Ms.+Hoa" alt="Ms. Hoa" />
+            <div class="team-overlay"></div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Ms. Tr&#7847;n Th&#7883; Hoa</div>
+            <div class="team-role">Teacher &middot; All Levels</div>
+            <p class="team-bio">MA in TESOL. Passionate about making grammar and vocabulary fun for all age groups.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section section-cream" id="testimonials">
+    <div class="container">
+      <div class="sec-head center">
+        <div class="sec-kicker center reveal">Student Reviews</div>
+        <h2 class="sec-h reveal d1">Kind Words from Our <span class="accent">Students</span></h2>
+        <p class="sec-desc reveal d2" style="margin:0 auto 2.5rem;">Real stories from real families who found their love of English here.</p>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card reveal d1">
+          <div class="testi-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+          <p class="testi-text">&ldquo;My daughter was terrified of speaking English at school. After just 3 months at Fun English, she&rsquo;s now the one raising her hand first! The teachers are so patient and every class feels like a party.&rdquo;</p>
+          <div class="testi-author">
+            <img src="https://placehold.co/80x80/fde8e4/f25c4b?text=P" alt="Ph&#432;&#417;ng" class="testi-avatar" />
+            <div><div class="testi-name">Ch&#7883; Ph&#432;&#417;ng</div><div class="testi-role">Parent &middot; Little Explorers</div></div>
+          </div>
+        </div>
+        <div class="testi-card reveal d2">
+          <div class="testi-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+          <p class="testi-text">&ldquo;I joined the adult class to improve my English for work presentations. Mr. David is incredible &mdash; he makes even grammar feel interesting. My boss noticed the improvement within the first month!&rdquo;</p>
+          <div class="testi-author">
+            <img src="https://placehold.co/80x80/d9ecf8/2b7fc4?text=M" alt="Minh" class="testi-avatar" style="border-color:var(--blue);" />
+            <div><div class="testi-name">Anh Minh T&uacute;</div><div class="testi-role">Student &middot; Professional English</div></div>
+          </div>
+        </div>
+        <div class="testi-card reveal d3">
+          <div class="testi-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+          <p class="testi-text">&ldquo;Con t&ocirc;i h&#7885;c &#7903; &#273;&acirc;y &#273;&#432;&#7907;c 1 n&#259;m v&agrave; ti&#7871;n b&#7897; r&#7845;t nhi&#7873;u. C&aacute;c th&#7847;y c&ocirc; r&#7845;t nhi&#7879;t t&igrave;nh, ph&#432;&#417;ng ph&aacute;p gi&#7843;ng d&#7841;y s&aacute;ng t&#7841;o. Class size nh&#7887; n&ecirc;n c&aacute;c em &#273;&#432;&#7907;c ch&uacute; &yacute; ri&ecirc;ng. T&ocirc;i r&#7845;t h&agrave;i l&ograve;ng!&rdquo;</p>
+          <div class="testi-author">
+            <img src="https://placehold.co/80x80/edf8e8/1c8a1c?text=L" alt="Lan" class="testi-avatar" style="border-color:#1c8a1c;" />
+            <div><div class="testi-name">Ch&#7883; Thanh Lan</div><div class="testi-role">Parent &middot; English Boost</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <div class="partners-strip">
+    <div class="container">
+      <div class="partners-label">Our Partners &amp; Certifications</div>
+      <div class="partners-row">
+        <img src="https://placehold.co/120x36/eeeeee/999999?text=Cambridge" alt="Cambridge" class="partner-img" />
+        <img src="https://placehold.co/140x36/eeeeee/999999?text=British+Council" alt="British Council" class="partner-img" />
+        <img src="https://placehold.co/100x36/eeeeee/999999?text=IELTS" alt="IELTS" class="partner-img" />
+        <img src="https://placehold.co/110x36/eeeeee/999999?text=Pearson" alt="Pearson" class="partner-img" />
+        <img src="https://placehold.co/100x36/eeeeee/999999?text=TOEFL" alt="TOEFL" class="partner-img" />
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+
+        <div>
+          <div class="sec-kicker sec-kicker-blue reveal">Get in Touch</div>
+          <h2 class="sec-h reveal d1">Ready to Start<br />the <span class="accent">Fun English</span><br />Journey?</h2>
+          <p class="sec-desc reveal d2">Drop us a message, give us a call, or visit &mdash; we would love to meet you and answer any questions about our courses.</p>
+
+          <div class="ci-list">
+            <div class="ci reveal d1">
+              <div class="ci-icon ic-c">&#128222;</div>
+              <div><div class="ci-label">Phone / Hotline</div><div class="ci-val">0901 234 567</div></div>
+            </div>
+            <div class="ci reveal d2">
+              <div class="ci-icon ic-b">&#128205;</div>
+              <div><div class="ci-label">Address</div><div class="ci-val">123 &#272;&#432;&#7901;ng L&ecirc; L&#7907;i, Qu&#7853;n 1, TP. H&#7891; Ch&iacute; Minh</div></div>
+            </div>
+            <div class="ci reveal d3">
+              <div class="ci-icon ic-y">&#9200;</div>
+              <div><div class="ci-label">Opening Hours</div><div class="ci-val">Mon &ndash; Sat &nbsp;|&nbsp; 8:00 AM &ndash; 8:00 PM</div></div>
+            </div>
+            <div class="ci reveal d3">
+              <div class="ci-icon ic-c">&#128140;</div>
+              <div><div class="ci-label">Email</div><div class="ci-val">hello@anhngufunenglish.vn</div></div>
+            </div>
+          </div>
+
+          <!-- Map placeholder -->
+          <div style="margin-top:2rem; border-radius:var(--r-md); overflow:hidden; aspect-ratio:16/7; background:linear-gradient(135deg,var(--cream),var(--cream-warm)); border:1.5px solid rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; font-size:2rem; color:var(--ink-light); position:relative;" class="reveal d4">
+            &#128506;
+            <div style="position:absolute; bottom:1rem; left:1rem; background:#fff; border-radius:0.5rem; padding:0.5rem 1rem; font-family:'Nunito',sans-serif; font-size:0.78rem; font-weight:800; color:var(--ink); box-shadow:0 2px 8px rgba(0,0,0,0.1); display:flex; align-items:center; gap:0.4rem;">
+              &#128205; 123 &#272;&#432;&#7901;ng L&ecirc; L&#7907;i, Qu&#7853;n 1, TPHCM
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card reveal d2">
+          <div class="form-ttl">Send an Inquiry</div>
+          <div class="form-sub">We will reply within 24 hours. Free trial class available!</div>
+          <form id="inquiryForm" novalidate>
+            <div class="form-row">
+              <div class="fg">
+                <label class="fl" for="f-name">Full Name *</label>
+                <input class="fi" type="text" id="f-name" name="name" placeholder="Nguy&#7877;n V&#259;n A" required />
+              </div>
+              <div class="fg">
+                <label class="fl" for="f-phone">Phone Number *</label>
+                <input class="fi" type="tel" id="f-phone" name="phone" placeholder="0901 234 567" required />
+              </div>
+            </div>
+            <div class="fg">
+              <label class="fl" for="f-email">Email (optional)</label>
+              <input class="fi" type="email" id="f-email" name="email" placeholder="you@email.com" />
+            </div>
+            <div class="fg">
+              <label class="fl" for="f-course">Course Interested In</label>
+              <select class="fsel" id="f-course" name="course">
+                <option value="">-- Choose a course --</option>
+                <option value="kids">Little Explorers (Kids 4&ndash;10)</option>
+                <option value="teens">English Boost (Teens 11&ndash;17)</option>
+                <option value="adults">Professional English (Adults 18+)</option>
+                <option value="trial">Free Trial Class</option>
+                <option value="unsure">Not sure yet</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label class="fl" for="f-msg">Message</label>
+              <textarea class="fta" id="f-msg" name="message" placeholder="Tell us about your child's age, your goals, or any questions..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-coral form-btn">Send Message &rarr;</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div>
+          <div class="footer-brand-row">
+            <img src="brand_assests/Logo Fun English.jpg" alt="Fun English Logo" />
+            <div class="footer-brand-name">Anh Ngu Fun English</div>
+          </div>
+          <p class="footer-tagline">A warm, playful English school where learners of all ages discover the joy of speaking. Learn English. Love English.</p>
+          <div class="footer-socials">
+            <a href="#" title="Facebook">fb</a>
+            <a href="#" title="Zalo">zl</a>
+            <a href="#" title="YouTube">yt</a>
+            <a href="#" title="Instagram">ig</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#courses">Our Courses</a></li>
+            <li><a href="#schedule">Class Schedule</a></li>
+            <li><a href="#team">Our Teachers</a></li>
+            <li><a href="#testimonials">Student Reviews</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Courses</div>
+          <ul class="footer-links">
+            <li><a href="#courses">Little Explorers (Kids)</a></li>
+            <li><a href="#courses">English Boost (Teens)</a></li>
+            <li><a href="#courses">Professional English</a></li>
+            <li><a href="#schedule">View Schedule</a></li>
+            <li><a href="#contact">Free Trial Class</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-contact-row"><span class="ico">&#128222;</span><span>0901 234 567</span></div>
+          <div class="footer-contact-row"><span class="ico">&#128205;</span><span>123 &#272;&#432;&#7901;ng L&ecirc; L&#7907;i, Qu&#7853;n 1,<br />TP. H&#7891; Ch&iacute; Minh</span></div>
+          <div class="footer-contact-row"><span class="ico">&#9200;</span><span>Mon &ndash; Sat: 8:00 AM &ndash; 8:00 PM</span></div>
+          <div class="footer-contact-row"><span class="ico">&#128140;</span><span>hello@anhngufunenglish.vn</span></div>
+        </div>
+
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Anh Ngu Fun English. All rights reserved.</p>
+        <div class="footer-badges">
+          <span class="footer-badge">Cambridge Partner</span>
+          <span class="footer-badge">IELTS Ready</span>
+          <span class="footer-badge">B&#7897; GD&amp;&#272;T Licensed</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.hero .reveal, .hero-eyebrow, .hero-title, .hero-tagline, .hero-body, .hero-btns, .hero-stats').forEach(el =>
+        setTimeout(() => el.classList.add('visible'), 80));
+    });
+
+    // Hamburger
+    const ham = document.getElementById('hamburger');
+    const nl  = document.getElementById('navLinks');
+    ham.addEventListener('click', () => {
+      const open = nl.classList.toggle('open');
+      ham.setAttribute('aria-expanded', open);
+    });
+    nl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      nl.classList.remove('open');
+      ham.setAttribute('aria-expanded', 'false');
+    }));
+
+    // Schedule tabs
+    document.querySelectorAll('.sched-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.sched-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.sched-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Toast
+    const toast = document.getElementById('toast');
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3600);
+    }
+
+    // Form
+    document.getElementById('inquiryForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const name  = e.target.name.value.trim();
+      const phone = e.target.phone.value.trim();
+      if (!name)  { showToast('Please enter your full name.'); return; }
+      if (!phone) { showToast('Please enter your phone number.'); return; }
+      const btn = e.target.querySelector('.form-btn');
+      btn.textContent = 'Sending...'; btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Send Message \u2192'; btn.disabled = false;
+        e.target.reset();
+        showToast('Message sent! We will be in touch soon.');
+      }, 1200);
+    });
+
+    // Ripple effect on coral buttons
+    document.querySelectorAll('.btn-coral, .nav-cta').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height) * 1.4;
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const ripple = document.createElement('span');
+        ripple.className = 'btn-ripple';
+        ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px;`;
+        this.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove());
+      });
+    });
+
+    // Active nav
+    const secs = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let cur = '';
+      secs.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        const on = a.getAttribute('href') === '#' + cur;
+        a.style.color      = on ? 'var(--coral)' : '';
+        a.style.background = on ? 'rgba(242,92,75,0.08)' : '';
+      });
+    }, { passive: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node serve.mjs)",
+      "Bash(git config --global user.name)",
+      "Bash(git config --global user.email)",
+      "Bash(git config --global user.name \"gheartshapedbox-boop\")",
+      "Bash(git config --global user.email \"gheartshapedbox@gmail.com\")"
+    ]
+  }
+}
