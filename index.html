@@ -3,824 +3,829 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anh Ngu Fun English — Learn English. Love English.</title>
+  <title>Anh Ngữ Fun English — Học Tiếng Anh Vui · Tự Tin Tỏa Sáng</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@500;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    /* ─── Design tokens derived from logo ─── */
+    /* ── DESIGN TOKENS ── */
     :root {
-      --coral:       #f25c4b;   /* logo text red */
-      --coral-dark:  #c8402f;
-      --coral-deep:  #9e2e1e;
-      --yellow:      #f7ef5d;   /* logo background yellow */
-      --yellow-dark: #d4cc1a;
-      --blue:        #2b7fc4;
-      --blue-dark:   #1a5d96;
-      --ink:         #1c1720;
-      --ink-mid:     #3d3445;
-      --ink-light:   #7a6d8c;
-      --cream:       #fffdf0;   /* warm yellow-tinted white */
-      --cream-warm:  #fff8e1;
-      --white:       #ffffff;
+      --yellow:       #f7ef5d;
+      --yellow-dark:  #d4cc1a;
+      --yellow-pale:  #fffde7;
+      --sky:          #5bbcf5;
+      --sky-light:    #e0f3fd;
+      --sky-pale:     #f0f9ff;
+      --sky-dark:     #1a8ec9;
+      --coral:        #ff6b47;
+      --coral-dark:   #d94f2e;
+      --coral-light:  #fff0ec;
+      --ink:          #1c1b35;
+      --ink-2:        #3f3e62;
+      --ink-3:        #7c7b9d;
+      --white:        #ffffff;
+      --green:        #3dba7e;
+      --green-light:  #e8f7f0;
 
-      --r-sm: 0.75rem;
-      --r-md: 1.25rem;
-      --r-lg: 2rem;
-      --r-xl: 3rem;
+      --ff-head: 'Baloo 2', cursive;
+      --ff-body: 'Nunito', sans-serif;
+
+      --shadow-sm:  0 2px 12px rgba(28,27,53,0.09);
+      --shadow-md:  0 4px 24px rgba(28,27,53,0.12), 0 1px 6px rgba(28,27,53,0.06);
+      --shadow-lg:  0 12px 40px rgba(28,27,53,0.16), 0 2px 8px rgba(28,27,53,0.08);
+
+      --r-sm:  12px;
+      --r-md:  20px;
+      --r-lg:  32px;
     }
 
+    /* ── RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Lato', sans-serif;
-      background: var(--cream);
-      color: var(--ink);
-      line-height: 1.7;
+      font-family: var(--ff-body);
+      background: var(--white);
+      color: var(--ink-2);
+      line-height: 1.65;
       overflow-x: hidden;
     }
-
+    a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
-    a   { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* Noise grain overlay */
-    body::after {
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--yellow);
+      color: var(--ink);
+      text-align: center;
+      font-family: var(--ff-body);
+      font-size: 0.88rem;
+      font-weight: 800;
+      padding: 0.6rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 300;
+      border-bottom: 2px solid var(--yellow-dark);
+    }
+    .topbar-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--ink);
+      color: var(--yellow);
+      font-family: var(--ff-body);
+      font-weight: 900;
+      font-size: 0.82rem;
+      padding: 0.32em 1.1em;
+      border-radius: 999px;
+      border: 2px solid var(--ink);
+      transition: background 0.18s, color 0.18s;
+      white-space: nowrap;
+    }
+    .topbar-btn:hover { background: var(--white); color: var(--ink); }
+
+    /* ── NAVBAR ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--white);
+      box-shadow: 0 2px 16px rgba(28,27,53,0.09);
+      border-bottom: 3px solid var(--yellow);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 1.5rem;
+      max-width: 1160px;
+      margin: 0 auto;
+      gap: 1.5rem;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.7rem; flex-shrink: 0; }
+    .nav-logo img {
+      height: 50px;
+      width: 50px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2.5px solid var(--yellow-dark);
+      box-shadow: 2px 2px 0 var(--yellow-dark);
+    }
+    .nav-logo-name {
+      font-family: var(--ff-head);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+    .nav-logo-sub {
+      font-size: 0.63rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--coral);
+    }
+    .nav-links { display: flex; align-items: center; gap: 0.1rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--ink-2);
+      padding: 0.42em 0.9em;
+      border-radius: 999px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover { color: var(--coral); background: var(--coral-light); }
+    .nav-cta-btn {
+      font-family: var(--ff-body);
+      font-weight: 900;
+      font-size: 0.9rem;
+      background: var(--coral);
+      color: var(--white);
+      padding: 0.55em 1.45em;
+      border-radius: 999px;
+      border: 2.5px solid var(--coral-dark);
+      box-shadow: 3px 3px 0 var(--coral-dark);
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.15s;
+      white-space: nowrap;
+      flex-shrink: 0;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .nav-cta-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--coral-dark); }
+    .nav-cta-btn:active { transform: scale(0.95); box-shadow: 1px 1px 0 var(--coral-dark); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 7px;
+      border: 2px solid var(--ink);
+      border-radius: 10px;
+    }
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 2.5px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.2s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      padding: 6rem 0 8rem;
+      overflow: hidden;
+      background: linear-gradient(140deg, var(--yellow) 0%, #fdf698 28%, #aadff8 68%, var(--sky) 100%);
+    }
+    .hero::before {
       content: '';
-      position: fixed; inset: 0;
-      pointer-events: none; z-index: 9999;
-      opacity: 0.025;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 440px; height: 440px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,107,71,0.14);
+      pointer-events: none;
+    }
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-blob-1 { width: 150px; height: 150px; top: 12%; left: 7%; background: rgba(255,255,255,0.45); animation: floatUp 6s ease-in-out infinite; }
+    .hero-blob-2 { width: 80px;  height: 80px;  top: 55%; right: 12%; background: rgba(255,107,71,0.28); animation: floatUp 5s ease-in-out infinite 1.2s; }
+    .hero-blob-3 { width: 110px; height: 110px; bottom: 22%; left: 42%; background: rgba(255,255,255,0.3); animation: floatUp 7s ease-in-out infinite 2s; }
+    .hero-blob-4 { width: 60px;  height: 60px;  top: 30%; right: 28%; background: rgba(247,239,93,0.55); animation: floatUp 4.5s ease-in-out infinite 0.5s; }
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-20px); }
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 660px; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: var(--white);
+      color: var(--coral);
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.35em 1.1em;
+      border-radius: 999px;
+      border: 2.5px solid var(--coral-dark);
+      box-shadow: 3px 3px 0 var(--coral-dark);
+      margin-bottom: 1.5rem;
+    }
+    .hero-dot { width: 8px; height: 8px; background: var(--coral); border-radius: 50%; animation: blink 2s ease-in-out infinite; }
+    @keyframes blink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.35; transform: scale(1.6); }
+    }
+    .hero-title {
+      font-family: var(--ff-head);
+      font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.06;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.1rem;
+    }
+    .hero-title .hi { color: var(--coral); }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      font-weight: 600;
+      color: rgba(28,27,53,0.72);
+      max-width: 510px;
+      line-height: 1.72;
+      margin-bottom: 2.25rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--ff-body);
+      font-weight: 900;
+      font-size: 0.96rem;
+      padding: 0.78em 2em;
+      border-radius: 999px;
+      border: 2.5px solid transparent;
+      cursor: pointer;
+      transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:active { transform: scale(0.95) !important; }
+    .btn-yellow {
+      background: var(--yellow); color: var(--ink);
+      border-color: var(--yellow-dark);
+      box-shadow: 4px 4px 0 var(--yellow-dark);
+    }
+    .btn-yellow:hover { transform: translate(-2px,-3px); box-shadow: 6px 7px 0 var(--yellow-dark); }
+    .btn-coral {
+      background: var(--coral); color: var(--white);
+      border-color: var(--coral-dark);
+      box-shadow: 4px 4px 0 var(--coral-dark);
+    }
+    .btn-coral:hover { transform: translate(-2px,-3px); box-shadow: 6px 7px 0 var(--coral-dark); }
+    .btn-sky {
+      background: var(--sky); color: var(--white);
+      border-color: var(--sky-dark);
+      box-shadow: 4px 4px 0 var(--sky-dark);
+    }
+    .btn-sky:hover { transform: translate(-2px,-3px); box-shadow: 6px 7px 0 var(--sky-dark); }
+    .btn-outline-ink {
+      background: transparent; color: var(--ink);
+      border-color: var(--ink);
+      box-shadow: 3px 3px 0 rgba(28,27,53,0.25);
+    }
+    .btn-outline-ink:hover { background: var(--ink); color: var(--white); transform: translate(-2px,-2px); box-shadow: 5px 5px 0 rgba(28,27,53,0.35); }
+
+    /* ── HERO STATS ── */
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      padding-top: 2rem;
+      border-top: 2.5px dashed rgba(28,27,53,0.22);
+    }
+    .stat-n {
+      font-family: var(--ff-head);
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .stat-l {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(28,27,53,0.55);
+      margin-top: 0.12rem;
     }
 
-    /* ─── Scroll reveal ─── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1),
-                  transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    /* ── INFO STRIP ── */
+    .infostrip { background: var(--yellow-dark); border-bottom: 2px solid rgba(0,0,0,0.1); }
+    .infostrip-inner {
+      max-width: 1160px; margin: 0 auto;
+      padding: 0.68rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap;
     }
+    .infostrip-item {
+      display: flex; align-items: center; gap: 0.45rem;
+      font-family: var(--ff-body); font-size: 0.82rem; font-weight: 700; color: var(--ink);
+    }
+    .infostrip-item .ico { font-size: 1rem; flex-shrink: 0; }
+
+    /* ── SECTIONS ── */
+    .section { padding: 5.5rem 0; }
+    .section-sky    { background: var(--sky-pale); }
+    .section-yellow { background: var(--yellow-pale); }
+
+    /* Section headers */
+    .sec-kicker {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--ff-body); font-size: 0.74rem; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      padding: 0.35em 1.1em; border-radius: 999px; margin-bottom: 0.85rem;
+    }
+    .kicker-coral  { background: var(--coral-light);  color: var(--coral);    border: 1.5px solid rgba(255,107,71,0.3); }
+    .kicker-sky    { background: var(--sky-light);    color: var(--sky-dark); border: 1.5px solid rgba(91,188,245,0.35); }
+    .kicker-yellow { background: var(--yellow);       color: var(--ink);      border: 1.5px solid var(--yellow-dark); }
+    .kicker-green  { background: var(--green-light);  color: var(--green);    border: 1.5px solid rgba(61,186,126,0.3); }
+
+    .sec-h {
+      font-family: var(--ff-head);
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: 800; color: var(--ink);
+      line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 0.65rem;
+    }
+    .sec-h .accent     { color: var(--coral); }
+    .sec-h .accent-sky { color: var(--sky-dark); }
+    .sec-h .accent-yel { color: var(--yellow-dark); }
+    .sec-desc { font-size: 1rem; color: var(--ink-3); line-height: 1.78; max-width: 560px; }
+    .sec-head { margin-bottom: 3.25rem; }
+    .sec-head.center { text-align: center; }
+    .sec-head.center .sec-desc { margin-left: auto; margin-right: auto; }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4.5rem; align-items: center; }
+    .about-img-wrap { position: relative; }
+    .about-img-box {
+      border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 4/3;
+      border: 3px solid var(--white); outline: 3px solid var(--yellow-dark);
+      box-shadow: 8px 8px 0 var(--yellow-dark);
+    }
+    .about-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .about-sticker {
+      position: absolute; bottom: -1.35rem; right: -1.35rem;
+      background: var(--yellow); border: 3px solid var(--ink);
+      border-radius: var(--r-md); padding: 0.95rem 1.2rem;
+      text-align: center; transform: rotate(4deg);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .about-sticker .sn { font-family: var(--ff-head); font-size: 2.1rem; font-weight: 800; color: var(--ink); line-height: 1; }
+    .about-sticker .sl { font-size: 0.64rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); margin-top: 0.1rem; }
+    .about-sticker-2 {
+      position: absolute; top: -1rem; left: -1rem;
+      background: var(--coral); border: 3px solid var(--ink); border-radius: 50%;
+      width: 62px; height: 62px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.55rem; box-shadow: 3px 3px 0 var(--ink); transform: rotate(-12deg);
+    }
+    .about-bullets { display: flex; flex-direction: column; gap: 0.72rem; margin: 1.75rem 0 2.25rem; }
+    .about-bullet {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      font-family: var(--ff-body); font-size: 0.95rem; font-weight: 600; color: var(--ink-2);
+    }
+    .bullet-icon {
+      width: 30px; height: 30px; flex-shrink: 0;
+      background: var(--yellow); border: 2px solid var(--ink); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.88rem; box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    /* ── COURSES ── */
+    .courses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.85rem; }
+    .course-card {
+      background: var(--white); border-radius: var(--r-lg);
+      border: 2.5px solid var(--ink); box-shadow: 5px 5px 0 var(--ink);
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+    }
+    .course-card:hover { transform: translate(-3px,-4px); box-shadow: 8px 9px 0 var(--ink); }
+    .course-banner { padding: 1.85rem 1.75rem 1.4rem; }
+    .course-header { display: flex; align-items: flex-start; gap: 0.95rem; margin-bottom: 0.75rem; }
+    .course-icon {
+      font-size: 2.4rem; width: 66px; height: 66px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: var(--r-md); border: 2.5px solid var(--ink); box-shadow: 3px 3px 0 var(--ink);
+    }
+    .course-title { font-family: var(--ff-head); font-size: 1.4rem; font-weight: 800; color: var(--ink); margin-bottom: 0.25rem; }
+    .course-age {
+      display: inline-block; font-size: 0.73rem; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      padding: 0.22em 0.75em; border-radius: 999px; border: 1.5px solid currentColor;
+    }
+    .course-body { padding: 0 1.75rem 1.85rem; }
+    .course-desc { font-size: 0.91rem; color: var(--ink-3); line-height: 1.72; margin-bottom: 1.2rem; }
+    .course-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.35rem; }
+    .course-tag {
+      display: inline-flex; align-items: center; gap: 0.25rem;
+      font-size: 0.75rem; font-weight: 700; padding: 0.22em 0.7em; border-radius: 999px;
+      background: var(--sky-light); color: var(--sky-dark); border: 1px solid rgba(26,142,201,0.18);
+    }
+    /* Card themes */
+    .cc-yellow .course-banner { background: var(--yellow-pale); }
+    .cc-yellow .course-icon   { background: var(--yellow); }
+    .cc-yellow .course-age    { color: var(--yellow-dark); border-color: var(--yellow-dark); background: rgba(247,239,93,0.2); }
+    .cc-sky .course-banner    { background: var(--sky-pale); }
+    .cc-sky .course-icon      { background: var(--sky-light); }
+    .cc-sky .course-age       { color: var(--sky-dark); border-color: var(--sky-dark); background: rgba(91,188,245,0.12); }
+    .cc-coral .course-banner  { background: var(--coral-light); }
+    .cc-coral .course-icon    { background: rgba(255,107,71,0.18); }
+    .cc-coral .course-age     { color: var(--coral); border-color: var(--coral); background: rgba(255,107,71,0.1); }
+
+    /* ── WHY US ── */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .why-card {
+      background: var(--white); border-radius: var(--r-md); padding: 2rem 1.5rem;
+      border: 2px solid rgba(28,27,53,0.08); box-shadow: var(--shadow-sm);
+      text-align: center;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s, border-color 0.2s;
+    }
+    .why-card:hover { transform: translateY(-7px); box-shadow: var(--shadow-lg); border-color: var(--yellow-dark); }
+    .why-icon {
+      width: 64px; height: 64px; border-radius: var(--r-md); border: 2.5px solid var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.75rem; margin: 0 auto 1.1rem; box-shadow: 3px 3px 0 var(--ink);
+    }
+    .why-title { font-family: var(--ff-head); font-size: 1.05rem; font-weight: 800; color: var(--ink); margin-bottom: 0.45rem; }
+    .why-desc { font-size: 0.875rem; color: var(--ink-3); line-height: 1.68; }
+
+    /* ── TESTIMONIALS ── */
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+    .testi-card {
+      background: var(--white); border-radius: var(--r-lg); padding: 2rem;
+      box-shadow: var(--shadow-md); border: 1.5px solid rgba(28,27,53,0.07);
+      position: relative; overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+    }
+    .testi-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .testi-quote-mark {
+      position: absolute; top: 0.5rem; right: 1.25rem;
+      font-family: var(--ff-head); font-size: 5.5rem;
+      color: var(--yellow); opacity: 0.7; line-height: 1; user-select: none;
+    }
+    .testi-stars { display: flex; gap: 0.2rem; margin-bottom: 0.85rem; }
+    .testi-stars span { color: var(--yellow-dark); font-size: 1.05rem; }
+    .testi-text { font-size: 0.91rem; color: var(--ink-2); line-height: 1.8; margin-bottom: 1.5rem; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 0.8rem; }
+    .testi-avatar { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2.5px solid var(--yellow); flex-shrink: 0; }
+    .testi-name { font-family: var(--ff-body); font-size: 0.9rem; font-weight: 900; color: var(--ink); }
+    .testi-role { font-size: 0.74rem; color: var(--ink-3); margin-top: 0.12rem; }
+
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4.5rem; align-items: start; }
+    .ci-list { display: flex; flex-direction: column; gap: 1.1rem; margin: 1.75rem 0 1.5rem; }
+    .ci { display: flex; align-items: flex-start; gap: 0.85rem; }
+    .ci-ico {
+      width: 44px; height: 44px; flex-shrink: 0; border-radius: var(--r-sm);
+      border: 2px solid var(--ink); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .ci-label { font-family: var(--ff-body); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-3); margin-bottom: 0.15rem; }
+    .ci-val { font-family: var(--ff-body); font-size: 0.93rem; font-weight: 700; color: var(--ink); }
+    .map-wrap {
+      border-radius: var(--r-md); overflow: hidden;
+      border: 2.5px solid var(--ink); box-shadow: 5px 5px 0 var(--yellow-dark);
+      aspect-ratio: 16/8;
+    }
+    .map-wrap iframe { width: 100%; height: 100%; display: block; border: none; }
+    .form-card {
+      background: var(--white); border-radius: var(--r-lg);
+      border: 2.5px solid var(--ink); padding: 2.5rem;
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+    .form-ttl { font-family: var(--ff-head); font-size: 1.65rem; font-weight: 800; color: var(--ink); margin-bottom: 0.2rem; }
+    .form-sub { font-size: 0.86rem; color: var(--ink-3); margin-bottom: 1.75rem; }
+    .fg { margin-bottom: 1.05rem; }
+    .fl { display: block; font-size: 0.81rem; font-weight: 800; color: var(--ink-2); margin-bottom: 0.3rem; }
+    .fi, .fsel, .fta {
+      width: 100%; font-family: var(--ff-body); font-size: 0.93rem; color: var(--ink);
+      background: var(--yellow-pale); border: 2px solid rgba(28,27,53,0.15);
+      border-radius: 12px; padding: 0.68em 1em; outline: none;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+    .fi:focus, .fsel:focus, .fta:focus { border-color: var(--coral); box-shadow: 0 0 0 3px rgba(255,107,71,0.12); }
+    .fta { resize: vertical; min-height: 100px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-btn { width: 100%; justify-content: center; margin-top: 0.25rem; font-size: 1rem; }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--ink); padding: 4rem 0 2rem; }
+    .footer-grid {
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 2rem;
+    }
+    .footer-brand-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.9rem; }
+    .footer-brand-row img { height: 44px; width: 44px; border-radius: 10px; object-fit: cover; border: 2px solid rgba(255,255,255,0.15); }
+    .footer-brand-name { font-family: var(--ff-head); font-size: 1rem; font-weight: 800; color: var(--white); }
+    .footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.42); line-height: 1.72; margin-bottom: 1.25rem; }
+    .footer-socials { display: flex; gap: 0.55rem; }
+    .footer-socials a {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,0.07); border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-body); font-size: 0.78rem; font-weight: 900;
+      color: rgba(255,255,255,0.5);
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .footer-socials a:hover { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
+    .footer-col-title { font-family: var(--ff-body); font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.35); margin-bottom: 1rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-links li { font-family: var(--ff-body); font-size: 0.87rem; font-weight: 600; color: rgba(255,255,255,0.5); }
+    .footer-links a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    .footer-links a:hover { color: var(--yellow); }
+    .footer-copy { text-align: center; font-size: 0.77rem; color: rgba(255,255,255,0.22); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(5rem);
+      background: var(--ink); color: var(--yellow);
+      font-family: var(--ff-body); font-weight: 800; font-size: 0.9rem;
+      padding: 0.8em 1.75em; border-radius: 999px;
+      border: 2px solid var(--yellow); box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+      z-index: 999; opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+      white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
     .reveal.visible { opacity: 1; transform: none; }
     .d1 { transition-delay: 0.08s; }
     .d2 { transition-delay: 0.17s; }
     .d3 { transition-delay: 0.26s; }
     .d4 { transition-delay: 0.35s; }
+    .d5 { transition-delay: 0.44s; }
+    .d6 { transition-delay: 0.53s; }
 
-    /* ─── Container ─── */
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-
-    /* ─── Pill label ─── */
-    .pill {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.75rem; font-weight: 800;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.35em 1em; border-radius: 999px;
-      border: 2px solid currentColor;
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+      .about-sticker { right: 1rem; }
+      .courses-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .testi-grid { grid-template-columns: 1fr 1fr; }
     }
-    .pill-coral  { color: var(--coral);      background: rgba(242,92,75,0.08); }
-    .pill-yellow { color: var(--yellow-dark); background: rgba(247,239,93,0.18); }
-    .pill-blue   { color: var(--blue);        background: rgba(43,127,196,0.08); }
-
-    /* ─── Buttons ─── */
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800; font-size: 1rem;
-      padding: 0.8em 2em; border-radius: 999px;
-      border: 2.5px solid transparent; cursor: pointer;
-      transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1),
-                  box-shadow 0.2s ease;
-    }
-    .btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
-    .btn:active        { transform: scale(0.97) !important; }
-
-    .btn-coral {
-      background: var(--coral); color: #fff;
-      box-shadow: 4px 4px 0 var(--coral-dark);
-    }
-    .btn-coral:hover {
-      transform: translate(-2px,-2px);
-      box-shadow: 6px 6px 0 var(--coral-dark);
-    }
-
-    .btn-yellow {
-      background: var(--yellow); color: var(--ink);
-      border-color: var(--ink);
-      box-shadow: 4px 4px 0 var(--ink);
-    }
-    .btn-yellow:hover {
-      transform: translate(-2px,-2px);
-      box-shadow: 6px 6px 0 var(--ink);
-    }
-
-    .btn-outline {
-      background: transparent; color: var(--ink);
-      border-color: var(--ink);
-      box-shadow: 3px 3px 0 var(--ink);
-    }
-    .btn-outline:hover {
-      transform: translate(-2px,-2px);
-      box-shadow: 5px 5px 0 var(--ink);
-    }
-
-    /* ════════════════════════ NAV ════════════════════════ */
-    .nav {
-      position: sticky; top: 0; z-index: 200;
-      background: rgba(255,253,240,0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 2.5px solid var(--ink);
-    }
-
-    .nav-inner {
-      display: flex; align-items: center;
-      justify-content: space-between;
-      padding: 0.65rem 2rem;
-      max-width: 1200px; margin: 0 auto;
-    }
-
-    .nav-logo {
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    .nav-logo-img {
-      height: 48px; width: 48px;
-      border-radius: var(--r-sm);
-      object-fit: cover;
-      border: 2px solid var(--ink);
-      box-shadow: 2px 2px 0 var(--ink);
-      flex-shrink: 0;
-    }
-    .nav-logo-text {
-      display: flex; flex-direction: column;
-      font-family: 'Nunito', sans-serif;
-    }
-    .nav-logo-name {
-      font-size: 1rem; font-weight: 900;
-      letter-spacing: -0.02em; line-height: 1.15;
-      color: var(--ink);
-    }
-    .nav-logo-sub {
-      font-size: 0.68rem; font-weight: 800;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--coral);
-    }
-
-    .nav-links {
-      display: flex; align-items: center;
-      gap: 0.15rem; list-style: none;
-    }
-    .nav-links a {
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.9rem; font-weight: 800;
-      color: var(--ink-mid); padding: 0.4em 0.85em;
-      border-radius: 999px;
-      transition: color 0.15s, background 0.15s;
-    }
-    .nav-links a:hover { color: var(--coral); background: rgba(242,92,75,0.08); }
-
-    .nav-hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: 2px solid var(--ink);
-      padding: 7px; border-radius: 10px; cursor: pointer;
-    }
-    .nav-hamburger span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; }
-
-    /* ════════════════════════ HERO ════════════════════════ */
-    .hero {
-      position: relative; overflow: hidden;
-      padding: 5rem 0 6rem;
-      background: var(--cream);
-      border-bottom: 2.5px solid var(--ink);
-    }
-
-    /* Ghost text backdrop */
-    .hero-ghost {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      font-family: 'Boogaloo', cursive;
-      font-size: clamp(8rem, 22vw, 18rem);
-      color: transparent;
-      -webkit-text-stroke: 2px rgba(242,92,75,0.07);
-      white-space: nowrap; pointer-events: none; user-select: none;
-      line-height: 1; letter-spacing: 0.02em;
-    }
-
-    /* Decorative blobs */
-    .blob {
-      position: absolute; border-radius: 50%;
-      filter: blur(70px); pointer-events: none;
-    }
-    .blob-1 { width: 500px; height: 500px; background: rgba(247,239,93,0.18); top: -120px; right: -100px; }
-    .blob-2 { width: 380px; height: 380px; background: rgba(242,92,75,0.10); bottom: -80px; left: -80px; }
-    .blob-3 { width: 280px; height: 280px; background: rgba(43,127,196,0.07); top: 45%; right: 30%; }
-
-    .hero-inner {
-      position: relative; z-index: 1;
-      display: grid; grid-template-columns: 1.1fr 0.9fr;
-      gap: 3.5rem; align-items: center;
-    }
-
-    /* Live badge / sticker */
-    .hero-sticker {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.82rem; font-weight: 800;
-      background: var(--yellow); color: var(--ink);
-      padding: 0.45em 1.15em; border-radius: 999px;
-      border: 2.5px solid var(--ink);
-      box-shadow: 2px 2px 0 var(--ink);
-      transform: rotate(-1.5deg);
-      margin-bottom: 1.6rem;
-    }
-    .sticker-dot {
-      width: 7px; height: 7px;
-      background: var(--coral); border-radius: 50%;
-      animation: blink 2s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.35;transform:scale(1.6)} }
-
-    .hero-title {
-      font-family: 'Boogaloo', cursive;
-      font-size: clamp(3.4rem, 7vw, 5.5rem);
-      letter-spacing: 0.01em; line-height: 1.0;
-      color: var(--ink); margin-bottom: 0.4rem;
-    }
-    .hero-title .accent { color: var(--coral); }
-
-    .hero-tagline {
-      font-family: 'Nunito', sans-serif;
-      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
-      font-weight: 900; color: var(--blue);
-      margin-bottom: 1.4rem; letter-spacing: -0.01em;
-    }
-
-    .hero-body {
-      font-size: 1.05rem; color: var(--ink-mid);
-      line-height: 1.75; max-width: 460px;
-      margin-bottom: 2.4rem;
-    }
-
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-
-    .hero-stats {
-      display: flex; gap: 2rem;
-      margin-top: 3rem; padding-top: 2rem;
-      border-top: 2px dashed rgba(242,92,75,0.22);
-    }
-    .stat-n {
-      font-family: 'Boogaloo', cursive;
-      font-size: 2.1rem; color: var(--coral); line-height: 1;
-    }
-    .stat-l {
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.72rem; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      color: var(--ink-light); margin-top: 0.15rem;
-    }
-
-    /* Hero visual — logo + orbit rings */
-    .hero-visual {
-      display: flex; align-items: center; justify-content: center;
-    }
-    .logo-ring {
-      position: relative; width: 340px; height: 340px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .logo-ring::before {
-      content: '';
-      position: absolute; inset: 0;
-      border: 3px dashed rgba(242,92,75,0.22);
-      border-radius: 50%;
-      animation: spin-slow 22s linear infinite;
-    }
-    .logo-ring::after {
-      content: '';
-      position: absolute; inset: 22px;
-      border: 2px dashed rgba(247,239,93,0.5);
-      border-radius: 50%;
-      animation: spin-slow 15s linear infinite reverse;
-    }
-    @keyframes spin-slow { to { transform: rotate(360deg); } }
-
-    .hero-logo {
-      width: 220px; height: 220px;
-      border-radius: var(--r-lg);
-      object-fit: cover;
-      border: 3px solid var(--ink);
-      box-shadow: 6px 6px 0 var(--ink);
-      position: relative; z-index: 2;
-      animation: bob 5.5s ease-in-out infinite;
-    }
-    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-
-    /* Floating info cards */
-    .float-card {
-      position: absolute;
-      background: var(--white);
-      border: 2.5px solid var(--ink); border-radius: var(--r-md);
-      padding: 0.6rem 1rem;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.82rem; font-weight: 800;
-      display: flex; align-items: center; gap: 0.5rem;
-      box-shadow: 3px 3px 0 var(--ink);
-      z-index: 3; white-space: nowrap;
-    }
-    .fc-1 { top: 4%;  left: -14%; transform: rotate(2deg);   animation: fwobble 7s ease-in-out infinite; }
-    .fc-2 { bottom: 10%; right: -12%; transform: rotate(-2deg);  animation: fwobble 6s ease-in-out infinite 1.2s; }
-    .fc-3 { top: 54%; left: -10%; transform: rotate(1.5deg); animation: fwobble 8s ease-in-out infinite 0.6s; }
-    @keyframes fwobble { 0%,100%{transform:rotate(2deg) translateY(0)} 50%{transform:rotate(-1.5deg) translateY(-6px)} }
-
-    /* ════════════════════════ ABOUT ════════════════════════ */
-    .about {
-      background: var(--ink); padding: 6rem 0;
-      position: relative; overflow: hidden;
-      border-bottom: 2.5px solid rgba(255,255,255,0.08);
-    }
-    .about::before {
-      content: 'ENGLISH';
-      position: absolute; bottom: -1.5rem; right: -1rem;
-      font-family: 'Boogaloo', cursive; font-size: 10rem;
-      color: rgba(255,255,255,0.03);
-      pointer-events: none; user-select: none; line-height: 1;
-    }
-
-    .about-inner {
-      display: grid; grid-template-columns: 1fr 1.1fr;
-      gap: 5rem; align-items: center;
-    }
-
-    .about-img-block { position: relative; }
-    .about-img-box {
-      border: 3px solid rgba(255,255,255,0.12);
-      border-radius: var(--r-lg);
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, #2d1f3d, #1a2a3d);
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden; position: relative;
-      font-size: 5rem; text-align: center;
-    }
-    .about-img-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(242,92,75,0.12), transparent 55%);
-    }
-
-    .about-badge {
-      position: absolute; bottom: -1.5rem; right: -1.5rem;
-      background: var(--yellow); border: 3px solid var(--ink);
-      border-radius: var(--r-md); padding: 1rem 1.25rem;
-      text-align: center; transform: rotate(3deg);
-      box-shadow: 4px 4px 0 var(--ink);
-    }
-    .about-badge .bn { font-family: 'Boogaloo', cursive; font-size: 2rem; color: var(--ink); line-height: 1; }
-    .about-badge .bl { font-family: 'Nunito', sans-serif; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink); opacity: 0.65; margin-top: 0.1rem; }
-
-    .about-title {
-      font-family: 'Boogaloo', cursive;
-      font-size: clamp(1.9rem, 4vw, 2.9rem);
-      letter-spacing: 0.01em; line-height: 1.1;
-      color: var(--white); margin: 0.75rem 0 1rem;
-    }
-    .about-title .accent { color: var(--yellow); }
-
-    .about-body { font-size: 1rem; color: rgba(255,255,255,0.62); line-height: 1.8; margin-bottom: 0.9rem; }
-
-    .about-checks { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 1.75rem; }
-    .about-check {
-      display: flex; align-items: center; gap: 0.75rem;
-      font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700;
-      color: rgba(255,255,255,0.82);
-    }
-    .chk {
-      width: 26px; height: 26px; flex-shrink: 0;
-      background: var(--yellow); border: 2px solid var(--ink);
-      border-radius: 6px; display: flex; align-items: center; justify-content: center;
-      font-size: 0.8rem; font-weight: 900; color: var(--ink);
-    }
-
-    /* ════════════════════════ COURSES ════════════════════════ */
-    .courses {
-      padding: 6rem 0;
-      background: var(--cream-warm);
-      border-top: 2.5px solid var(--ink);
-      border-bottom: 2.5px solid var(--ink);
-      position: relative; overflow: hidden;
-    }
-    .courses::before {
-      content: 'COURSES';
-      position: absolute; top: -2rem; left: -1rem;
-      font-family: 'Boogaloo', cursive; font-size: 9rem;
-      color: rgba(242,92,75,0.05);
-      pointer-events: none; user-select: none; line-height: 1;
-    }
-
-    .sec-head { margin-bottom: 3.5rem; }
-    .sec-head.center { text-align: center; }
-    .sec-head.center .sec-desc { margin: 0 auto; }
-
-    .sec-h {
-      font-family: 'Boogaloo', cursive;
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      letter-spacing: 0.01em; line-height: 1.1;
-      color: var(--ink); margin: 0.6rem 0 0.75rem;
-    }
-    .sec-desc { font-size: 1rem; color: var(--ink-mid); line-height: 1.75; max-width: 520px; }
-
-    .courses-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.75rem;
-    }
-
-    .course-card {
-      background: var(--white);
-      border: 2.5px solid var(--ink); border-radius: var(--r-lg);
-      overflow: hidden; box-shadow: 5px 5px 0 var(--ink);
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
-    }
-    .course-card:hover { transform: translate(-4px,-4px); box-shadow: 9px 9px 0 var(--ink); }
-
-    .course-top {
-      height: 155px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 4rem;
-      border-bottom: 2.5px solid var(--ink);
-      position: relative;
-    }
-    .ct-kids   { background: linear-gradient(135deg, #fde8e4, #f8c4bc); }
-    .ct-teens  { background: linear-gradient(135deg, #d9ecf8, #acd3ef); }
-    .ct-adults { background: linear-gradient(135deg, #edf8e8, #bce0b4); }
-
-    .ctag {
-      position: absolute; top: 0.75rem; right: 0.75rem;
-      font-family: 'Nunito', sans-serif; font-size: 0.68rem; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      padding: 0.28em 0.8em; border-radius: 999px; border: 2px solid currentColor;
-    }
-    .ctag-k { color: var(--coral);  background: rgba(242,92,75,0.1); }
-    .ctag-t { color: var(--blue);   background: rgba(43,127,196,0.1); }
-    .ctag-a { color: #1c8a1c;       background: rgba(28,138,28,0.1); }
-
-    .course-body { padding: 1.5rem; }
-    .course-name { font-family: 'Boogaloo', cursive; font-size: 1.5rem; letter-spacing: 0.01em; color: var(--ink); margin-bottom: 0.45rem; }
-    .course-desc { font-size: 0.9rem; color: var(--ink-mid); line-height: 1.65; margin-bottom: 1rem; }
-    .course-meta { display: flex; gap: 1rem; font-family: 'Nunito', sans-serif; font-size: 0.78rem; font-weight: 800; color: var(--ink-light); margin-bottom: 1rem; }
-    .course-cta {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-family: 'Nunito', sans-serif; font-size: 0.88rem; font-weight: 900;
-      color: var(--coral); border-bottom: 2px solid var(--coral); padding-bottom: 1px;
-      transition: gap 0.18s;
-    }
-    .course-cta:hover { gap: 0.7rem; }
-
-    /* ════════════════════════ WHY US ════════════════════════ */
-    .why {
-      padding: 6rem 0;
-      background: var(--coral);
-      border-top: 2.5px solid var(--ink);
-      border-bottom: 2.5px solid var(--ink);
-      position: relative; overflow: hidden;
-    }
-    .why::after {
-      content: 'FUN';
-      position: absolute; bottom: -4rem; right: -1rem;
-      font-family: 'Boogaloo', cursive; font-size: 14rem;
-      color: rgba(255,255,255,0.06);
-      pointer-events: none; user-select: none; line-height: 1;
-    }
-
-    .why .sec-h { color: var(--white); }
-    .why .sec-desc { color: rgba(255,255,255,0.7); }
-    .why .pill { color: rgba(255,255,255,0.9); border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.1); }
-
-    .why-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
-
-    .why-card {
-      background: rgba(255,255,255,0.1);
-      border: 2px solid rgba(255,255,255,0.2);
-      border-radius: var(--r-lg); padding: 1.75rem 1.5rem;
-      transition: background 0.2s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .why-card:hover { background: rgba(255,255,255,0.18); transform: translateY(-6px); }
-
-    .why-icon {
-      width: 58px; height: 58px;
-      background: var(--yellow); border: 2.5px solid var(--ink);
-      border-radius: var(--r-md);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; margin-bottom: 1.1rem;
-      box-shadow: 3px 3px 0 rgba(0,0,0,0.25);
-    }
-    .why-title { font-family: 'Nunito', sans-serif; font-size: 1.05rem; font-weight: 900; color: var(--white); margin-bottom: 0.4rem; }
-    .why-desc  { font-size: 0.87rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
-
-    /* ════════════════════════ CONTACT ════════════════════════ */
-    .contact { padding: 6rem 0; background: var(--cream); }
-
-    .contact-inner {
-      display: grid; grid-template-columns: 1fr 1.1fr;
-      gap: 5rem; align-items: start;
-    }
-
-    .contact-items { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
-    .ci { display: flex; align-items: flex-start; gap: 1rem; }
-    .ci-icon {
-      width: 48px; height: 48px; flex-shrink: 0;
-      border: 2.5px solid var(--ink); border-radius: var(--r-md);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; box-shadow: 3px 3px 0 var(--ink);
-    }
-    .ic-coral  { background: var(--coral); }
-    .ic-blue   { background: var(--blue); }
-    .ic-yellow { background: var(--yellow); }
-    .ci-lbl { font-family: 'Nunito', sans-serif; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-light); margin-bottom: 0.2rem; }
-    .ci-val { font-family: 'Nunito', sans-serif; font-size: 0.97rem; font-weight: 700; color: var(--ink); }
-
-    .form-card {
-      background: var(--white);
-      border: 2.5px solid var(--ink); border-radius: var(--r-lg);
-      padding: 2.5rem; box-shadow: 6px 6px 0 var(--ink);
-    }
-    .form-ttl { font-family: 'Boogaloo', cursive; font-size: 1.7rem; letter-spacing: 0.01em; color: var(--ink); margin-bottom: 0.2rem; }
-    .form-sub { font-size: 0.87rem; color: var(--ink-light); margin-bottom: 1.75rem; }
-
-    .fg { margin-bottom: 1.1rem; }
-    .fl { display: block; font-family: 'Nunito', sans-serif; font-size: 0.82rem; font-weight: 800; color: var(--ink-mid); margin-bottom: 0.35rem; }
-    .fi, .fsel, .fta {
-      width: 100%; font-family: 'Lato', sans-serif; font-size: 0.95rem; color: var(--ink);
-      background: var(--cream); border: 2px solid var(--ink); border-radius: 0.65rem;
-      padding: 0.7em 1em; outline: none;
-      transition: border-color 0.18s, box-shadow 0.18s;
-    }
-    .fi:focus, .fsel:focus, .fta:focus {
-      border-color: var(--coral);
-      box-shadow: 0 0 0 3px rgba(242,92,75,0.12);
-    }
-    .fta { resize: vertical; min-height: 100px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-btn { width: 100%; justify-content: center; margin-top: 0.25rem; font-size: 1.05rem; }
-
-    /* ════════════════════════ FOOTER ════════════════════════ */
-    .footer { background: var(--ink); padding: 2.5rem 2rem; border-top: 2.5px solid var(--ink); }
-    .footer-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1.25rem;
-    }
-    .footer-logo { display: flex; align-items: center; gap: 0.75rem; }
-    .footer-logo-img {
-      height: 38px; width: 38px;
-      border-radius: 8px; object-fit: cover;
-      border: 2px solid rgba(255,255,255,0.15);
-      opacity: 0.9;
-    }
-    .footer-brand { font-family: 'Nunito', sans-serif; font-size: 0.92rem; font-weight: 900; color: var(--white); }
-    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
-    .footer-links a { font-family: 'Nunito', sans-serif; font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.42); transition: color 0.15s; }
-    .footer-links a:hover { color: var(--white); }
-    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.28); }
-
-    /* ════════════════════════ TOAST ════════════════════════ */
-    .toast {
-      position: fixed; bottom: 2rem; left: 50%;
-      transform: translateX(-50%) translateY(5rem);
-      background: var(--ink); color: var(--white);
-      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem;
-      padding: 0.8em 1.75em; border-radius: 999px;
-      border: 2px solid rgba(255,255,255,0.12);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.22);
-      z-index: 1000; opacity: 0; white-space: nowrap;
-      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
-    }
-    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
-
-    /* ════════════════════════ RESPONSIVE ════════════════════════ */
-    @media (max-width: 960px) {
-      .hero-inner         { grid-template-columns: 1fr; gap: 2.5rem; }
-      .hero-visual        { order: -1; }
-      .logo-ring          { width: 260px; height: 260px; }
-      .hero-logo          { width: 170px; height: 170px; }
-      .fc-1,.fc-2,.fc-3   { display: none; }
-
-      .about-inner        { grid-template-columns: 1fr; gap: 3rem; }
-      .about-badge        { right: 1rem; }
-
-      .courses-grid       { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
-      .why-grid           { grid-template-columns: repeat(2,1fr); }
-      .contact-inner      { grid-template-columns: 1fr; gap: 3rem; }
-    }
-
     @media (max-width: 640px) {
-      .nav-links, .nav-cta-d { display: none; }
-      .nav-hamburger          { display: flex; }
-
+      .nav-links, .nav-cta-btn { display: none; }
+      .hamburger { display: flex; }
       .nav-links.open {
         display: flex; flex-direction: column;
         position: absolute; top: 100%; left: 0; right: 0;
-        background: var(--cream); padding: 1rem 1.5rem;
-        border-bottom: 2px solid var(--ink);
-        box-shadow: 0 4px 14px rgba(0,0,0,0.1); z-index: 100;
+        background: var(--white); padding: 1rem 1.5rem;
+        border-bottom: 2px solid rgba(28,27,53,0.1);
+        box-shadow: 0 4px 16px rgba(28,27,53,0.1); z-index: 100;
       }
-
-      .hero-stats { flex-wrap: wrap; gap: 1.25rem; }
-      .why-grid   { grid-template-columns: 1fr 1fr; }
-      .form-row   { grid-template-columns: 1fr; }
-
-      .footer-inner { flex-direction: column; text-align: center; gap: 1rem; }
-      .footer-links { justify-content: center; flex-wrap: wrap; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero { padding: 4rem 0 5.5rem; }
+      .hero-stats { gap: 1.5rem; }
+      .infostrip-item:nth-child(3),
+      .infostrip-item:nth-child(4) { display: none; }
+    }
+    @media (max-width: 440px) {
+      .why-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ═══════════ NAV ═══════════ -->
+  <!-- 1. TOP BAR -->
+  <div class="topbar">
+    <span>🎉 Đăng ký học kỳ mới đang mở! Ưu đãi học phí cho 50 học sinh đầu tiên — Liên hệ ngay!</span>
+    <a href="#contact" class="topbar-btn">Đăng Ký Ngay &rarr;</a>
+  </div>
+
+  <!-- 2. NAVBAR -->
   <nav class="nav" id="top">
     <div class="nav-inner">
-      <a href="#top" class="nav-logo" aria-label="Anh Ngu Fun English — home">
-        <img src="brand_assests/Logo Fun English.jpg" alt="Fun English Logo" class="nav-logo-img" />
-        <div class="nav-logo-text">
-          <span class="nav-logo-name">Anh Ngu Fun English</span>
-          <span class="nav-logo-sub">Learn &middot; Love &middot; Grow</span>
+      <a href="#top" class="nav-logo" aria-label="Anh Ngữ Fun English">
+        <img src="brand_assests/Logo Fun English.jpg" alt="Logo Fun English" />
+        <div>
+          <div class="nav-logo-name">Anh Ngữ Fun English</div>
+          <div class="nav-logo-sub">Học · Yêu · Tỏa Sáng</div>
         </div>
       </a>
 
       <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#courses">Courses</a></li>
-        <li><a href="#why">Why Us</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">Giới Thiệu</a></li>
+        <li><a href="#courses">Khóa Học</a></li>
+        <li><a href="#why">Tại Sao Chọn Chúng Tôi</a></li>
+        <li><a href="#contact">Liên Hệ</a></li>
       </ul>
 
-      <a href="#contact" class="btn btn-coral nav-cta-d" style="font-size:0.88rem;padding:0.62em 1.5em;">
-        Enroll Now
-      </a>
+      <a href="#contact" class="nav-cta-btn">Đăng Ký Ngay &rarr;</a>
 
-      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <button class="hamburger" id="hamburger" aria-label="Mở menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <!-- ═══════════ HERO ═══════════ -->
-  <section class="hero">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-    <div class="hero-ghost" aria-hidden="true">FUN</div>
-
-    <div class="wrap">
-      <div class="hero-inner">
-
-        <!-- Text side -->
-        <div>
-          <div class="hero-sticker reveal">
-            <span class="sticker-dot"></span>
-            Now Enrolling &mdash; All Ages Welcome!
-          </div>
-
-          <h1 class="hero-title reveal d1">
-            Anh Ngu<br />
-            <span class="accent">Fun English</span>
-          </h1>
-
-          <p class="hero-tagline reveal d2">Learn English. Love English.</p>
-
-          <p class="hero-body reveal d2">
-            A warm, playful English school where kids, teens, and adults discover
-            the joy of speaking&nbsp;&mdash; through games, stories, and real
-            conversations that build lasting confidence.
-          </p>
-
-          <div class="hero-actions reveal d3">
-            <a href="#contact" class="btn btn-coral">Enroll Now &rarr;</a>
-            <a href="#courses" class="btn btn-outline">See Courses</a>
-          </div>
-
-          <div class="hero-stats reveal d4">
-            <div>
-              <div class="stat-n">500+</div>
-              <div class="stat-l">Happy Students</div>
-            </div>
-            <div>
-              <div class="stat-n">8+</div>
-              <div class="stat-l">Years Teaching</div>
-            </div>
-            <div>
-              <div class="stat-n">15</div>
-              <div class="stat-l">Max Class Size</div>
-            </div>
-          </div>
+  <!-- 3. HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-blob hero-blob-3"></div>
+    <div class="hero-blob hero-blob-4"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-dot"></span>
+          Đang tuyển sinh · Tất cả lứa tuổi
         </div>
-
-        <!-- Logo visual side -->
-        <div class="hero-visual">
-          <div class="logo-ring">
-            <img
-              src="brand_assests/Logo Fun English.jpg"
-              alt="Fun English"
-              class="hero-logo reveal d1"
-            />
-            <div class="float-card fc-1">&#127881; Fun every class!</div>
-            <div class="float-card fc-2">&#11088; Top-rated teachers</div>
-            <div class="float-card fc-3">&#128218; Small groups</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════ ABOUT ═══════════ -->
-  <section class="about" id="about">
-    <div class="wrap">
-      <div class="about-inner">
-
-        <div class="about-img-block reveal">
-          <div class="about-img-box">&#127979;&#128218;&#9999;</div>
-          <div class="about-img-overlay"></div>
-          <div class="about-badge">
-            <div class="bn">8+</div>
-            <div class="bl">Years of<br />Teaching</div>
-          </div>
-        </div>
-
-        <div>
-          <span class="pill pill-yellow reveal">About Us</span>
-          <h2 class="about-title reveal d1">
-            Where English<br />Becomes an <span class="accent">Adventure</span>
-          </h2>
-          <p class="about-body reveal d2">
-            At Anh Ngu Fun English, we believe learning a language should feel like
-            play, not work. Founded right here in our community, our school was built
-            on a single idea: every student learns better when they feel safe,
-            encouraged, and genuinely having fun.
-          </p>
-          <p class="about-body reveal d2">
-            Our curriculum blends games, storytelling, and real-world conversations
-            to build vocabulary, grammar, and confidence&mdash;at exactly the right
-            pace for each learner, from young kids to working adults.
-          </p>
-
-          <div class="about-checks reveal d3">
-            <div class="about-check"><div class="chk">&#10003;</div>Certified and experienced English teachers</div>
-            <div class="about-check"><div class="chk">&#10003;</div>Curriculum designed for Vietnamese learners</div>
-            <div class="about-check"><div class="chk">&#10003;</div>Warm, supportive classroom environment</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════ COURSES ═══════════ -->
-  <section class="courses" id="courses">
-    <div class="wrap">
-      <div class="sec-head center">
-        <span class="pill pill-coral reveal">Our Courses</span>
-        <h2 class="sec-h reveal d1">A Class for Every Learner</h2>
-        <p class="sec-desc reveal d2">
-          Tailored programs for every age and level&mdash;because the best English
-          class is one that fits you perfectly.
+        <h1 class="hero-title">
+          Học Tiếng Anh Vui —<br /><span class="hi">Tự Tin Tỏa Sáng!</span>
+        </h1>
+        <p class="hero-sub">
+          Chương trình học sáng tạo, giáo viên tận tâm, môi trường thân thiện cho mọi lứa tuổi.
         </p>
+        <div class="hero-btns">
+          <a href="#courses" class="btn btn-coral">Xem Khóa Học &darr;</a>
+          <a href="#contact" class="btn btn-outline-ink">Liên Hệ Tư Vấn &rarr;</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-n">500+</div>
+            <div class="stat-l">Học Sinh</div>
+          </div>
+          <div>
+            <div class="stat-n">10+</div>
+            <div class="stat-l">Năm Kinh Nghiệm</div>
+          </div>
+          <div>
+            <div class="stat-n">95%</div>
+            <div class="stat-l">Hài Lòng</div>
+          </div>
+          <div>
+            <div class="stat-n">3</div>
+            <div class="stat-l">Cấp Độ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. INFO STRIP -->
+  <div class="infostrip">
+    <div class="infostrip-inner">
+      <div class="infostrip-item"><span class="ico">📞</span> Hotline: 0909 123 456</div>
+      <div class="infostrip-item"><span class="ico">📍</span> 12H Nguyễn Quang Bích, P. Tân Bình, TP.HCM</div>
+      <div class="infostrip-item"><span class="ico">🕐</span> Thứ 2–7: 8:00–20:00</div>
+      <div class="infostrip-item"><span class="ico">✉️</span> info@funenglish.vn</div>
+    </div>
+  </div>
+
+  <!-- 5. ABOUT (GIỚI THIỆU) -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-img-wrap reveal">
+          <div class="about-img-box">
+            <img src="https://placehold.co/640x480/e0f3fd/1a8ec9?text=Ảnh+Lớp+Học" alt="Lớp học Fun English" />
+          </div>
+          <div class="about-sticker">
+            <div class="sn">10+</div>
+            <div class="sl">Năm Kinh<br />Nghiệm</div>
+          </div>
+          <div class="about-sticker-2">🌟</div>
+        </div>
+
+        <div>
+          <div class="sec-kicker kicker-coral reveal">Về Chúng Tôi</div>
+          <h2 class="sec-h reveal d1">Về Anh Ngữ <span class="accent">Fun English</span></h2>
+          <p class="sec-desc reveal d2">
+            Chúng tôi tin rằng học tiếng Anh phải thú vị, hiệu quả và phù hợp với từng học sinh.
+            Với hơn 10 năm kinh nghiệm, Fun English đã giúp hàng trăm học sinh tự tin giao tiếp tiếng Anh
+            trong cuộc sống và công việc.
+          </p>
+          <div class="about-bullets reveal d3">
+            <div class="about-bullet">
+              <div class="bullet-icon">🎉</div>
+              Môi trường học tập vui vẻ, thân thiện, khuyến khích sự sáng tạo
+            </div>
+            <div class="about-bullet">
+              <div class="bullet-icon">👩‍🏫</div>
+              Giáo viên có chứng chỉ quốc tế, giàu kinh nghiệm và tận tâm
+            </div>
+            <div class="about-bullet">
+              <div class="bullet-icon">👥</div>
+              Lớp học nhỏ, tối đa 12 học sinh — đảm bảo chất lượng từng buổi học
+            </div>
+            <div class="about-bullet">
+              <div class="bullet-icon">📚</div>
+              Chương trình theo chuẩn Cambridge, được cập nhật liên tục
+            </div>
+            <div class="about-bullet">
+              <div class="bullet-icon">📍</div>
+              Vị trí trung tâm, dễ tiếp cận, cơ sở vật chất hiện đại và thoáng mát
+            </div>
+          </div>
+          <div class="reveal d4">
+            <a href="#contact" class="btn btn-yellow">Tìm Hiểu Thêm &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. COURSES (KHÓA HỌC) -->
+  <section class="section section-sky" id="courses">
+    <div class="container">
+      <div class="sec-head center">
+        <div class="sec-kicker kicker-sky reveal">Các Khóa Học</div>
+        <h2 class="sec-h reveal d1">Các Khóa Học Của <span class="accent-sky">Chúng Tôi</span></h2>
+        <p class="sec-desc reveal d2">Chương trình được thiết kế riêng cho từng độ tuổi và trình độ — đảm bảo mỗi học sinh đều tiến bộ tối đa.</p>
       </div>
 
       <div class="courses-grid">
 
-        <div class="course-card reveal d1">
-          <div class="course-top ct-kids">
-            &#129308;&#127912;&#127880;
-            <span class="ctag ctag-k">Kids</span>
+        <div class="course-card cc-yellow reveal d1">
+          <div class="course-banner">
+            <div class="course-header">
+              <div class="course-icon">🌟</div>
+              <div>
+                <div class="course-title">Little Explorers</div>
+                <span class="course-age">4–8 tuổi</span>
+              </div>
+            </div>
           </div>
           <div class="course-body">
-            <div class="course-name">Little Explorers</div>
-            <p class="course-desc">Ages 4&ndash;10. Songs, games, and storybooks make learning English feel like recess. Kids build a strong foundation while they play.</p>
-            <div class="course-meta"><span>&#128336; 90 min/class</span><span>&#128066; Ages 4&ndash;10</span></div>
-            <a href="#contact" class="course-cta">Enroll &rarr;</a>
+            <p class="course-desc">Học tiếng Anh qua trò chơi, bài hát và hoạt động sáng tạo. Giúp bé xây dựng nền tảng vững chắc từ sớm trong môi trường vui nhộn và đầy màu sắc.</p>
+            <div class="course-tags">
+              <span class="course-tag">🎵 Bài hát</span>
+              <span class="course-tag">🎮 Trò chơi</span>
+              <span class="course-tag">🎨 Sáng tạo</span>
+              <span class="course-tag">📖 Truyện tranh</span>
+            </div>
+            <a href="#contact" class="btn btn-yellow" style="font-size:0.87rem;padding:0.62em 1.5em;">Đăng Ký &rarr;</a>
           </div>
         </div>
 
-        <div class="course-card reveal d2">
-          <div class="course-top ct-teens">
-            &#129489;&#127891;&#128172;
-            <span class="ctag ctag-t">Teens</span>
+        <div class="course-card cc-sky reveal d2">
+          <div class="course-banner">
+            <div class="course-header">
+              <div class="course-icon">🚀</div>
+              <div>
+                <div class="course-title">English Boost</div>
+                <span class="course-age">9–15 tuổi</span>
+              </div>
+            </div>
           </div>
           <div class="course-body">
-            <div class="course-name">English Boost</div>
-            <p class="course-desc">Ages 11&ndash;17. Real conversations, debate, and exam prep help teens gain the confidence to speak up in class and beyond.</p>
-            <div class="course-meta"><span>&#128336; 90 min/class</span><span>&#129489; Ages 11&ndash;17</span></div>
-            <a href="#contact" class="course-cta">Enroll &rarr;</a>
+            <p class="course-desc">Tăng cường kỹ năng nghe–nói–đọc–viết toàn diện. Giúp học sinh tự tin giao tiếp và chuẩn bị tốt cho các kỳ thi tiếng Anh.</p>
+            <div class="course-tags">
+              <span class="course-tag">🎧 Nghe</span>
+              <span class="course-tag">💬 Nói</span>
+              <span class="course-tag">📖 Đọc</span>
+              <span class="course-tag">✍️ Viết</span>
+            </div>
+            <a href="#contact" class="btn btn-sky" style="font-size:0.87rem;padding:0.62em 1.5em;">Đăng Ký &rarr;</a>
           </div>
         </div>
 
-        <div class="course-card reveal d3">
-          <div class="course-top ct-adults">
-            &#128105;&#128188;&#127758;
-            <span class="ctag ctag-a">Adults</span>
+        <div class="course-card cc-coral reveal d3">
+          <div class="course-banner">
+            <div class="course-header">
+              <div class="course-icon">💼</div>
+              <div>
+                <div class="course-title">Professional English</div>
+                <span class="course-age">16 tuổi trở lên</span>
+              </div>
+            </div>
           </div>
           <div class="course-body">
-            <div class="course-name">Professional English</div>
-            <p class="course-desc">Ages 18+. Work, travel, or daily life&mdash;our adult courses focus on practical, fluent English for real-world situations.</p>
-            <div class="course-meta"><span>&#128336; 120 min/class</span><span>&#128105; Ages 18+</span></div>
-            <a href="#contact" class="course-cta">Enroll &rarr;</a>
+            <p class="course-desc">Tiếng Anh giao tiếp và kỹ năng công sở thực tế. Phù hợp với người đi làm và sinh viên muốn nâng cao trình độ cho công việc.</p>
+            <div class="course-tags">
+              <span class="course-tag">🏢 Công sở</span>
+              <span class="course-tag">🗣️ Giao tiếp</span>
+              <span class="course-tag">📊 Thuyết trình</span>
+            </div>
+            <a href="#contact" class="btn btn-coral" style="font-size:0.87rem;padding:0.62em 1.5em;">Đăng Ký &rarr;</a>
           </div>
         </div>
 
@@ -828,111 +833,187 @@
     </div>
   </section>
 
-  <!-- ═══════════ WHY US ═══════════ -->
-  <section class="why" id="why">
-    <div class="wrap">
+  <!-- 7. WHY US (TẠI SAO CHỌN CHÚNG TÔI) -->
+  <section class="section" id="why">
+    <div class="container">
       <div class="sec-head center">
-        <span class="pill reveal">Why Choose Us</span>
-        <h2 class="sec-h reveal d1">Learning Here Just Feels Different</h2>
-        <p class="sec-desc reveal d2" style="margin:0 auto;">We have built an environment where students actually look forward to coming to class.</p>
+        <div class="sec-kicker kicker-yellow reveal">Điểm Nổi Bật</div>
+        <h2 class="sec-h reveal d1">Tại Sao Chọn <span class="accent">Chúng Tôi?</span></h2>
+        <p class="sec-desc reveal d2" style="margin:0 auto;">Chúng tôi không chỉ dạy tiếng Anh — chúng tôi xây dựng sự tự tin và tình yêu ngôn ngữ cho mỗi học sinh.</p>
       </div>
-
       <div class="why-grid">
         <div class="why-card reveal d1">
-          <div class="why-icon">&#127881;</div>
-          <div class="why-title">Fun-First Classes</div>
-          <p class="why-desc">Every lesson is packed with games, activities, and laughter. When learning is enjoyable, it sticks.</p>
+          <div class="why-icon" style="background:var(--yellow);">🏆</div>
+          <div class="why-title">Giáo Viên Chứng Chỉ Quốc Tế</div>
+          <p class="why-desc">100% giáo viên có chứng chỉ CELTA / TESOL, giàu kinh nghiệm và đam mê nghề dạy học.</p>
         </div>
         <div class="why-card reveal d2">
-          <div class="why-icon">&#128104;&#8205;&#127979;</div>
-          <div class="why-title">Expert Teachers</div>
-          <p class="why-desc">All teachers are certified, experienced, and passionate about helping every student grow.</p>
+          <div class="why-icon" style="background:var(--sky-light);">👥</div>
+          <div class="why-title">Lớp Học Nhỏ (Tối Đa 12)</div>
+          <p class="why-desc">Sĩ số tối đa 12 học sinh giúp giáo viên chú ý đến từng em và phát huy tối đa tiềm năng.</p>
         </div>
         <div class="why-card reveal d3">
-          <div class="why-icon">&#129309;</div>
-          <div class="why-title">Small Class Groups</div>
-          <p class="why-desc">Max 15 students per class ensures every learner gets real speaking time and personal attention.</p>
+          <div class="why-icon" style="background:var(--coral-light);">📚</div>
+          <div class="why-title">Chương Trình Cambridge</div>
+          <p class="why-desc">Giáo trình chuẩn Cambridge được thiết kế phù hợp với học sinh Việt Nam, hiệu quả và hiện đại.</p>
         </div>
         <div class="why-card reveal d4">
-          <div class="why-icon">&#128200;</div>
-          <div class="why-title">Real Results</div>
-          <p class="why-desc">Students consistently improve scores, confidence, and love of English&mdash;parents notice the difference.</p>
+          <div class="why-icon" style="background:var(--green-light);">🎁</div>
+          <div class="why-title">Học Thử Miễn Phí</div>
+          <p class="why-desc">Đăng ký học thử 1 buổi hoàn toàn miễn phí — không cần cam kết, trải nghiệm trước rồi quyết định.</p>
+        </div>
+        <div class="why-card reveal d5">
+          <div class="why-icon" style="background:var(--yellow-pale);">📊</div>
+          <div class="why-title">Báo Cáo Học Tập Hàng Tháng</div>
+          <p class="why-desc">Phụ huynh nhận báo cáo tiến độ học tập chi tiết mỗi tháng để theo dõi sự phát triển của con.</p>
+        </div>
+        <div class="why-card reveal d6">
+          <div class="why-icon" style="background:var(--sky-light);">🏫</div>
+          <div class="why-title">Cơ Sở Vật Chất Hiện Đại</div>
+          <p class="why-desc">Phòng học trang bị smart TV, máy chiếu, không gian thoáng mát và khu vực vui chơi học tập.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════ CONTACT ═══════════ -->
-  <section class="contact" id="contact">
-    <div class="wrap">
-      <div class="contact-inner">
+  <!-- 8. TESTIMONIALS (PHỤ HUYNH NÓI GÌ?) -->
+  <section class="section section-yellow" id="testimonials">
+    <div class="container">
+      <div class="sec-head center">
+        <div class="sec-kicker kicker-coral reveal">Phản Hồi</div>
+        <h2 class="sec-h reveal d1">Phụ Huynh <span class="accent">Nói Gì?</span></h2>
+        <p class="sec-desc reveal d2" style="margin:0 auto;">Những chia sẻ chân thực từ các gia đình đã tin tưởng gửi con đến Anh Ngữ Fun English.</p>
+      </div>
+      <div class="testi-grid">
+
+        <div class="testi-card reveal d1">
+          <div class="testi-quote-mark">"</div>
+          <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testi-text">"Con tôi trước đây rất ngại nói tiếng Anh, nhưng sau 3 tháng học tại Fun English, bé đã tự tin hẳn lên. Các thầy cô rất tận tâm và phương pháp dạy rất thú vị. Tôi thực sự hài lòng với sự tiến bộ của con!"</p>
+          <div class="testi-author">
+            <img src="https://placehold.co/80x80/fde8e4/d94f2e?text=P" alt="Chị Phương" class="testi-avatar" />
+            <div>
+              <div class="testi-name">Chị Nguyễn Thị Phương</div>
+              <div class="testi-role">Phụ huynh · Little Explorers</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal d2">
+          <div class="testi-quote-mark">"</div>
+          <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testi-text">"Tôi ghi danh lớp Professional English để chuẩn bị cho công việc. Giáo viên dạy rất thực tế, bài tập sát với môi trường làm việc. Sau 2 tháng, tôi đã tự tin họp hành bằng tiếng Anh rồi!"</p>
+          <div class="testi-author">
+            <img src="https://placehold.co/80x80/e0f3fd/1a8ec9?text=M" alt="Anh Minh" class="testi-avatar" style="border-color:var(--sky);" />
+            <div>
+              <div class="testi-name">Anh Trần Văn Minh</div>
+              <div class="testi-role">Học viên · Professional English</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal d3">
+          <div class="testi-quote-mark">"</div>
+          <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testi-text">"Cả hai bé nhà tôi đều học ở đây — một bé học Little Explorers, một bé học English Boost. Cả hai đều rất thích đến lớp. Lớp học nhỏ nên các con được chú ý rất nhiều. Rất đáng đồng tiền bát gạo!"</p>
+          <div class="testi-author">
+            <img src="https://placehold.co/80x80/e8f7f0/3dba7e?text=L" alt="Chị Lan" class="testi-avatar" style="border-color:var(--green);" />
+            <div>
+              <div class="testi-name">Chị Lê Thị Thanh Lan</div>
+              <div class="testi-role">Phụ huynh · English Boost</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. CONTACT (LIÊN HỆ) -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-grid">
 
         <div>
-          <span class="pill pill-blue reveal">Get in Touch</span>
-          <h2 class="sec-h reveal d1" style="margin-top:0.6rem;">
-            Ready to Start<br />the Fun English<br />Journey?
-          </h2>
-          <p class="sec-desc reveal d2">
-            Drop us a message, give us a call, or visit&mdash;we would love to meet
-            you and answer any questions about our courses.
-          </p>
+          <div class="sec-kicker kicker-sky reveal">Liên Hệ</div>
+          <h2 class="sec-h reveal d1">Sẵn Sàng Bắt Đầu<br /><span class="accent">Hành Trình Tiếng Anh?</span></h2>
+          <p class="sec-desc reveal d2">Liên hệ để được tư vấn miễn phí và đặt lịch học thử. Chúng tôi sẽ phản hồi trong vòng 24 giờ!</p>
 
-          <div class="contact-items">
-            <div class="ci reveal d1">
-              <div class="ci-icon ic-coral">&#128222;</div>
-              <div><div class="ci-lbl">Phone</div><div class="ci-val">0901 234 567</div></div>
-            </div>
+          <div class="ci-list">
             <div class="ci reveal d2">
-              <div class="ci-icon ic-blue">&#128205;</div>
-              <div><div class="ci-lbl">Address</div><div class="ci-val">123 Duong Le Loi, Quan 1, TP. Ho Chi Minh</div></div>
+              <div class="ci-ico" style="background:var(--coral-light);">📞</div>
+              <div>
+                <div class="ci-label">Hotline</div>
+                <div class="ci-val">0909 123 456</div>
+              </div>
             </div>
             <div class="ci reveal d3">
-              <div class="ci-icon ic-yellow">&#9200;</div>
-              <div><div class="ci-lbl">Hours</div><div class="ci-val">Mon &ndash; Sat &nbsp;|&nbsp; 8:00 AM &ndash; 8:00 PM</div></div>
+              <div class="ci-ico" style="background:var(--sky-light);">📍</div>
+              <div>
+                <div class="ci-label">Địa Chỉ</div>
+                <div class="ci-val">12H Nguyễn Quang Bích, P. Tân Bình, TP.HCM</div>
+              </div>
             </div>
+            <div class="ci reveal d3">
+              <div class="ci-ico" style="background:var(--yellow-pale);">🕐</div>
+              <div>
+                <div class="ci-label">Giờ Mở Cửa</div>
+                <div class="ci-val">Thứ 2–7 &nbsp;|&nbsp; 8:00 – 20:00</div>
+              </div>
+            </div>
+            <div class="ci reveal d4">
+              <div class="ci-ico" style="background:var(--coral-light);">✉️</div>
+              <div>
+                <div class="ci-label">Email</div>
+                <div class="ci-val">info@funenglish.vn</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="map-wrap reveal d4">
+            <iframe
+              src="https://maps.google.com/maps?q=Nguyen+Quang+Bich,+Tan+Binh,+Ho+Chi+Minh+City,+Vietnam&output=embed&z=16"
+              title="Bản đồ Anh Ngữ Fun English"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
           </div>
         </div>
 
         <div class="form-card reveal d2">
-          <div class="form-ttl">Send an Inquiry</div>
-          <div class="form-sub">We will reply within 24 hours.</div>
-
+          <div class="form-ttl">Gửi Thông Tin</div>
+          <div class="form-sub">Chúng tôi sẽ liên hệ lại trong vòng 24 giờ. Học thử hoàn toàn miễn phí!</div>
           <form id="inquiryForm" novalidate>
             <div class="form-row">
               <div class="fg">
-                <label class="fl" for="f-name">Full Name *</label>
-                <input class="fi" type="text" id="f-name" name="name" placeholder="Nguyen Van A" required />
+                <label class="fl" for="f-name">Họ Tên *</label>
+                <input class="fi" type="text" id="f-name" name="name" placeholder="Nguyễn Văn A" required />
               </div>
               <div class="fg">
-                <label class="fl" for="f-phone">Phone Number *</label>
-                <input class="fi" type="tel" id="f-phone" name="phone" placeholder="0901 234 567" required />
+                <label class="fl" for="f-phone">Số Điện Thoại *</label>
+                <input class="fi" type="tel" id="f-phone" name="phone" placeholder="0909 123 456" required />
               </div>
             </div>
-
             <div class="fg">
-              <label class="fl" for="f-email">Email (optional)</label>
-              <input class="fi" type="email" id="f-email" name="email" placeholder="you@email.com" />
+              <label class="fl" for="f-email">Email (tùy chọn)</label>
+              <input class="fi" type="email" id="f-email" name="email" placeholder="email@example.com" />
             </div>
-
             <div class="fg">
-              <label class="fl" for="f-course">Course Interested In</label>
+              <label class="fl" for="f-course">Khóa Học Quan Tâm</label>
               <select class="fsel" id="f-course" name="course">
-                <option value="">-- Choose a course --</option>
-                <option value="kids">Little Explorers (Kids 4&ndash;10)</option>
-                <option value="teens">English Boost (Teens 11&ndash;17)</option>
-                <option value="adults">Professional English (Adults 18+)</option>
-                <option value="unsure">Not sure yet</option>
+                <option value="">-- Chọn khóa học --</option>
+                <option value="kids">🌟 Little Explorers (4–8 tuổi)</option>
+                <option value="teens">🚀 English Boost (9–15 tuổi)</option>
+                <option value="adults">💼 Professional English (16+)</option>
+                <option value="trial">🎁 Học Thử Miễn Phí</option>
+                <option value="other">Khác / Chưa Biết</option>
               </select>
             </div>
-
             <div class="fg">
-              <label class="fl" for="f-msg">Message</label>
-              <textarea class="fta" id="f-msg" name="message" placeholder="Tell us about your child's age, your goals, or any questions..."></textarea>
+              <label class="fl" for="f-msg">Tin Nhắn</label>
+              <textarea class="fta" id="f-msg" name="message" placeholder="Chia sẻ thêm về độ tuổi của bé, mục tiêu học tập hoặc câu hỏi bạn muốn hỏi..."></textarea>
             </div>
-
-            <button type="submit" class="btn btn-coral form-btn">
-              Send Message &rarr;
-            </button>
+            <button type="submit" class="btn btn-coral form-btn">Gửi Thông Tin &rarr;</button>
           </form>
         </div>
 
@@ -940,52 +1021,81 @@
     </div>
   </section>
 
-  <!-- ═══════════ FOOTER ═══════════ -->
+  <!-- 10. FOOTER -->
   <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-logo">
-        <img src="brand_assests/Logo Fun English.jpg" alt="Fun English" class="footer-logo-img" />
-        <span class="footer-brand">Anh Ngu Fun English</span>
+    <div class="container">
+      <div class="footer-grid">
+
+        <div>
+          <div class="footer-brand-row">
+            <img src="brand_assests/Logo Fun English.jpg" alt="Logo Fun English" />
+            <div class="footer-brand-name">Anh Ngữ Fun English</div>
+          </div>
+          <p class="footer-tagline">Môi trường học tập thân thiện, sáng tạo và hiệu quả cho mọi lứa tuổi. Học tiếng Anh — Tự tin tỏa sáng!</p>
+          <div class="footer-socials">
+            <a href="#" title="Facebook">fb</a>
+            <a href="#" title="YouTube">yt</a>
+            <a href="#" title="Zalo">zl</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Khám Phá</div>
+          <ul class="footer-links">
+            <li><a href="#about">Giới Thiệu</a></li>
+            <li><a href="#courses">Khóa Học</a></li>
+            <li><a href="#why">Tại Sao Chọn Chúng Tôi</a></li>
+            <li><a href="#testimonials">Phản Hồi Học Viên</a></li>
+            <li><a href="#contact">Liên Hệ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Liên Hệ</div>
+          <ul class="footer-links">
+            <li>📞 0909 123 456</li>
+            <li>📍 12H Nguyễn Quang Bích, P. Tân Bình, TP.HCM</li>
+            <li>🕐 Thứ 2–7: 8:00 – 20:00</li>
+            <li>✉️ info@funenglish.vn</li>
+          </ul>
+        </div>
+
       </div>
-      <ul class="footer-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#courses">Courses</a></li>
-        <li><a href="#why">Why Us</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <p class="footer-copy">&copy; 2026 Anh Ngu Fun English. All rights reserved.</p>
+      <p class="footer-copy">© 2025 Anh Ngữ Fun English. All rights reserved.</p>
     </div>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    // Scroll reveal
+    // ── Scroll reveal ──
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
     window.addEventListener('load', () => {
-      document.querySelectorAll('.hero .reveal').forEach(el =>
-        setTimeout(() => el.classList.add('visible'), 80));
+      document.querySelectorAll('.hero-badge, .hero-title, .hero-sub, .hero-btns, .hero-stats').forEach(el =>
+        setTimeout(() => el.classList.add('visible'), 80)
+      );
     });
 
-    // Hamburger
+    // ── Hamburger ──
     const ham = document.getElementById('hamburger');
     const nl  = document.getElementById('navLinks');
     ham.addEventListener('click', () => {
       const open = nl.classList.toggle('open');
+      ham.classList.toggle('open', open);
       ham.setAttribute('aria-expanded', open);
     });
     nl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
       nl.classList.remove('open');
+      ham.classList.remove('open');
       ham.setAttribute('aria-expanded', 'false');
     }));
 
-    // Toast
+    // ── Toast ──
     const toast = document.getElementById('toast');
     function showToast(msg) {
       toast.textContent = msg;
@@ -993,31 +1103,33 @@
       setTimeout(() => toast.classList.remove('show'), 3600);
     }
 
-    // Form
+    // ── Form ──
     document.getElementById('inquiryForm').addEventListener('submit', e => {
       e.preventDefault();
       const name  = e.target.name.value.trim();
       const phone = e.target.phone.value.trim();
-      if (!name)  { showToast('Please enter your full name.'); return; }
-      if (!phone) { showToast('Please enter your phone number.'); return; }
+      if (!name)  { showToast('⚠️ Vui lòng nhập họ tên của bạn.'); return; }
+      if (!phone) { showToast('⚠️ Vui lòng nhập số điện thoại.'); return; }
       const btn = e.target.querySelector('.form-btn');
-      btn.textContent = 'Sending...'; btn.disabled = true;
+      btn.textContent = 'Đang gửi...';
+      btn.disabled = true;
       setTimeout(() => {
-        btn.textContent = 'Send Message \u2192'; btn.disabled = false;
+        btn.textContent = 'Gửi Thông Tin →';
+        btn.disabled = false;
         e.target.reset();
-        showToast('Message sent! We will be in touch soon.');
+        showToast('✅ Đã gửi! Chúng tôi sẽ liên hệ sớm nhất!');
       }, 1200);
     });
 
-    // Active nav on scroll
+    // ── Active nav ──
     const secs = document.querySelectorAll('section[id]');
     window.addEventListener('scroll', () => {
       let cur = '';
-      secs.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+      secs.forEach(s => { if (window.scrollY >= s.offsetTop - 140) cur = s.id; });
       document.querySelectorAll('.nav-links a').forEach(a => {
         const on = a.getAttribute('href') === '#' + cur;
         a.style.color      = on ? 'var(--coral)' : '';
-        a.style.background = on ? 'rgba(242,92,75,0.08)' : '';
+        a.style.background = on ? 'var(--coral-light)' : '';
       });
     }, { passive: true });
   </script>
