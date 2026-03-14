@@ -1199,20 +1199,15 @@
 
     // ── Form ──
     document.getElementById('inquiryForm').addEventListener('submit', e => {
-      e.preventDefault();
       const name  = e.target.name.value.trim();
       const phone = e.target.phone.value.trim();
-      if (!name)  { showToast('⚠️ Vui lòng nhập họ tên của bạn.'); return; }
-      if (!phone) { showToast('⚠️ Vui lòng nhập số điện thoại.'); return; }
-      const btn = e.target.querySelector('.form-btn');
-      btn.textContent = 'Đang gửi...';
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.textContent = 'Gửi Thông Tin →';
-        btn.disabled = false;
-        e.target.reset();
-        showToast('✅ Đã gửi! Chúng tôi sẽ liên hệ sớm nhất!');
-      }, 1200);
+      if (!name || !phone) {
+        e.preventDefault();
+        if (!name)  showToast('⚠️ Vui lòng nhập họ tên của bạn.');
+        else        showToast('⚠️ Vui lòng nhập số điện thoại.');
+        return;
+      }
+      // Allow form to submit naturally to Formspree
     });
 
     // ── Lightbox ──
