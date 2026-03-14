@@ -379,7 +379,7 @@
       border: 3px solid var(--white); outline: 3px solid var(--yellow-dark);
       box-shadow: 8px 8px 0 var(--yellow-dark);
     }
-    .about-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .about-img-box img { width: 100%; height: 100%; object-fit: cover; filter: brightness(1.12) contrast(1.1) saturate(1.08); }
     .about-sticker {
       position: absolute; bottom: -1.35rem; right: -1.35rem;
       background: var(--yellow); border: 3px solid var(--ink);
@@ -408,11 +408,20 @@
     }
 
     /* ── COURSES ── */
-    .courses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.85rem; }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto 1fr;
+      gap: 1.85rem;
+      align-items: start;
+    }
     .course-card {
       background: var(--white); border-radius: var(--r-lg);
       border: 2.5px solid var(--ink); box-shadow: 5px 5px 0 var(--ink);
       overflow: hidden;
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 2;
       transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
     }
     .course-card:hover { transform: translate(-3px,-4px); box-shadow: 8px 9px 0 var(--ink); }
@@ -429,8 +438,9 @@
       text-transform: uppercase; letter-spacing: 0.07em;
       padding: 0.22em 0.75em; border-radius: 999px; border: 1.5px solid currentColor;
     }
-    .course-body { padding: 0 1.75rem 1.85rem; }
+    .course-body { padding: 0 1.75rem 1.85rem; display: flex; flex-direction: column; }
     .course-desc { font-size: 0.91rem; color: var(--ink-3); line-height: 1.72; margin-bottom: 1.2rem; }
+    .course-body .btn { margin-top: auto; }
     .course-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.35rem; }
     .course-tag {
       display: inline-flex; align-items: center; gap: 0.25rem;
@@ -447,6 +457,9 @@
     .cc-coral .course-banner  { background: var(--coral-light); }
     .cc-coral .course-icon    { background: rgba(255,107,71,0.18); }
     .cc-coral .course-age     { color: var(--coral); border-color: var(--coral); background: rgba(255,107,71,0.1); }
+    .cc-indigo .course-banner { background: #f0f4ff; }
+    .cc-indigo .course-icon   { background: #e8eeff; }
+    .cc-indigo .course-age    { color: #5b6af5; border-color: #5b6af5; background: rgba(91,106,245,0.1); }
 
     /* ── WHY US ── */
     .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
@@ -483,7 +496,7 @@
     .testi-stars span { color: var(--yellow-dark); font-size: 1.05rem; }
     .testi-text { font-size: 0.91rem; color: var(--ink-2); line-height: 1.8; margin-bottom: 1.5rem; font-style: italic; }
     .testi-author { display: flex; align-items: center; gap: 0.8rem; }
-    .testi-avatar { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2.5px solid var(--yellow); flex-shrink: 0; }
+    .testi-avatar { width: 64px; height: 64px; object-fit: cover; flex-shrink: 0; }
     .testi-name { font-family: var(--ff-body); font-size: 0.9rem; font-weight: 900; color: var(--ink); }
     .testi-role { font-size: 0.74rem; color: var(--ink-3); margin-top: 0.12rem; }
 
@@ -538,17 +551,48 @@
       width: 40px; height: 40px;
       background: rgba(255,255,255,0.07); border: 1.5px solid rgba(255,255,255,0.12);
       border-radius: 10px; display: flex; align-items: center; justify-content: center;
-      font-family: var(--ff-body); font-size: 0.78rem; font-weight: 900;
-      color: rgba(255,255,255,0.5);
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      transition: background 0.15s, border-color 0.15s;
     }
-    .footer-socials a:hover { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
-    .footer-col-title { font-family: var(--ff-body); font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.35); margin-bottom: 1rem; }
+    .footer-socials a svg { width: 18px; height: 18px; transition: fill 0.15s; }
+    .footer-socials a[title="Facebook"] svg { fill: #0866FF; }
+    .footer-socials a[title="TikTok"] svg   { fill: #ffffff; }
+    .footer-socials a[title="YouTube"] svg  { fill: #FF0000; }
+    .footer-socials a:hover { background: var(--yellow); border-color: var(--yellow); }
+    .footer-socials a:hover svg { fill: var(--ink); }
+    .footer-col-title { font-family: var(--ff-body); font-size: 0.78rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em; color: var(--yellow); border-bottom: 1.5px solid rgba(247,239,93,0.3); padding-bottom: 0.5rem; margin-bottom: 1rem; }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
     .footer-links li { font-family: var(--ff-body); font-size: 0.87rem; font-weight: 600; color: rgba(255,255,255,0.5); }
     .footer-links a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
     .footer-links a:hover { color: var(--yellow); }
     .footer-copy { text-align: center; font-size: 0.77rem; color: rgba(255,255,255,0.22); }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.88);
+      align-items: center; justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw; max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      animation: lbIn 0.22s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes lbIn { from { opacity: 0; transform: scale(0.88); } to { opacity: 1; transform: scale(1); } }
+    .lightbox-close {
+      position: absolute; top: 1.25rem; right: 1.5rem;
+      color: #fff; font-size: 2rem; line-height: 1;
+      background: rgba(255,255,255,0.12); border: none;
+      border-radius: 50%; width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+    .testi-avatar { cursor: zoom-in; }
 
     /* ── TOAST ── */
     .toast {
@@ -578,11 +622,12 @@
     @media (max-width: 1024px) {
       .why-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: 1fr 1fr; }
+      .courses-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 900px) {
       .about-grid { grid-template-columns: 1fr; gap: 3.5rem; }
       .about-sticker { right: 1rem; }
-      .courses-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+      .courses-grid { grid-template-columns: repeat(2, 1fr); max-width: 900px; margin: 0 auto; }
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .testi-grid { grid-template-columns: 1fr 1fr; }
     }
@@ -598,6 +643,7 @@
       }
       .testi-grid { grid-template-columns: 1fr; }
       .why-grid { grid-template-columns: 1fr 1fr; }
+      .courses-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
       .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
       .form-row { grid-template-columns: 1fr; }
       .hero { padding: 4rem 0 5.5rem; }
@@ -625,7 +671,7 @@
         <img src="brand_assests/Logo Fun English.jpg" alt="Logo Fun English" />
         <div>
           <div class="nav-logo-name">Anh Ngữ Fun English</div>
-          <div class="nav-logo-sub">Học · Yêu · Tỏa Sáng</div>
+          <div class="nav-logo-sub">Học Là Phải Vui</div>
         </div>
       </a>
 
@@ -636,7 +682,7 @@
         <li><a href="#contact">Liên Hệ</a></li>
       </ul>
 
-      <a href="#contact" class="nav-cta-btn">Đăng Ký Ngay &rarr;</a>
+      <a href="tel:0975098749" class="nav-cta-btn">📞 0975 098 749</a>
 
       <button class="hamburger" id="hamburger" aria-label="Mở menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -668,11 +714,11 @@
         </div>
         <div class="hero-stats">
           <div>
-            <div class="stat-n">500+</div>
+            <div class="stat-n">300+</div>
             <div class="stat-l">Học Sinh</div>
           </div>
           <div>
-            <div class="stat-n">10+</div>
+            <div class="stat-n">8+</div>
             <div class="stat-l">Năm Kinh Nghiệm</div>
           </div>
           <div>
@@ -680,7 +726,7 @@
             <div class="stat-l">Hài Lòng</div>
           </div>
           <div>
-            <div class="stat-n">3</div>
+            <div class="stat-n">4</div>
             <div class="stat-l">Cấp Độ</div>
           </div>
         </div>
@@ -691,10 +737,10 @@
   <!-- 4. INFO STRIP -->
   <div class="infostrip">
     <div class="infostrip-inner">
-      <div class="infostrip-item"><span class="ico">📞</span> Hotline: 0909 123 456</div>
+      <div class="infostrip-item"><span class="ico">📞</span> Hotline: 0975 098 749 – 0888 853 987</div>
       <div class="infostrip-item"><span class="ico">📍</span> 12H Nguyễn Quang Bích, P. Tân Bình, TP.HCM</div>
-      <div class="infostrip-item"><span class="ico">🕐</span> Thứ 2–7: 8:00–20:00</div>
-      <div class="infostrip-item"><span class="ico">✉️</span> info@funenglish.vn</div>
+      <div class="infostrip-item"><span class="ico">🕐</span> T2–CN: 8h–11h &amp; 16h–21h</div>
+      <div class="infostrip-item"><span class="ico">✉️</span> Funenglish.edu.vn@gmail.com</div>
     </div>
   </div>
 
@@ -705,10 +751,10 @@
 
         <div class="about-img-wrap reveal">
           <div class="about-img-box">
-            <img src="https://placehold.co/640x480/e0f3fd/1a8ec9?text=Ảnh+Lớp+Học" alt="Lớp học Fun English" />
+            <img src="brand_assests/Main class picture.jpg" alt="Lớp học Fun English" />
           </div>
           <div class="about-sticker">
-            <div class="sn">10+</div>
+            <div class="sn">8+</div>
             <div class="sl">Năm Kinh<br />Nghiệm</div>
           </div>
           <div class="about-sticker-2">🌟</div>
@@ -719,8 +765,8 @@
           <h2 class="sec-h reveal d1">Về Anh Ngữ <span class="accent">Fun English</span></h2>
           <p class="sec-desc reveal d2">
             Chúng tôi tin rằng học tiếng Anh phải thú vị, hiệu quả và phù hợp với từng học sinh.
-            Với hơn 10 năm kinh nghiệm, Fun English đã giúp hàng trăm học sinh tự tin giao tiếp tiếng Anh
-            trong cuộc sống và công việc.
+            Với hơn 8 năm kinh nghiệm, Fun English đã giúp hàng trăm học sinh tự tin giao tiếp tiếng Anh
+            và đạt được chứng chỉ Tiếng Anh quốc tế uy tín.
           </p>
           <div class="about-bullets reveal d3">
             <div class="about-bullet">
@@ -769,13 +815,13 @@
             <div class="course-header">
               <div class="course-icon">🌟</div>
               <div>
-                <div class="course-title">Little Explorers</div>
-                <span class="course-age">4–8 tuổi</span>
+                <div class="course-title">Super Kids</div>
+                <span class="course-age">4–6 tuổi</span>
               </div>
             </div>
           </div>
           <div class="course-body">
-            <p class="course-desc">Học tiếng Anh qua trò chơi, bài hát và hoạt động sáng tạo. Giúp bé xây dựng nền tảng vững chắc từ sớm trong môi trường vui nhộn và đầy màu sắc.</p>
+            <p class="course-desc">Học tiếng Anh qua phát âm Phonics, trò chơi, bài hát và hoạt động nghe–kể chuyện. Giúp bé xây dựng nền tảng vững chắc từ sớm trong môi trường vui nhộn và năng động.</p>
             <div class="course-tags">
               <span class="course-tag">🎵 Bài hát</span>
               <span class="course-tag">🎮 Trò chơi</span>
@@ -791,19 +837,20 @@
             <div class="course-header">
               <div class="course-icon">🚀</div>
               <div>
-                <div class="course-title">English Boost</div>
-                <span class="course-age">9–15 tuổi</span>
+                <div class="course-title">Young Learners</div>
+                <span class="course-age">6–11 tuổi</span>
               </div>
             </div>
           </div>
           <div class="course-body">
-            <p class="course-desc">Tăng cường kỹ năng nghe–nói–đọc–viết toàn diện. Giúp học sinh tự tin giao tiếp và chuẩn bị tốt cho các kỳ thi tiếng Anh.</p>
+            <p class="course-desc">Làm quen và phát triển 4 kỹ năng nghe–nói–đọc–viết theo chuẩn Cambridge. Giúp học sinh tự tin giao tiếp và sẵn sàng cho các kỳ thi quốc tế thiếu nhi.</p>
             <div class="course-tags">
               <span class="course-tag">🎧 Nghe</span>
               <span class="course-tag">💬 Nói</span>
               <span class="course-tag">📖 Đọc</span>
               <span class="course-tag">✍️ Viết</span>
             </div>
+            <p style="font-size:0.72rem;color:var(--sky-dark);font-weight:700;margin-bottom:1rem;">Starters · Movers · Flyers</p>
             <a href="#contact" class="btn btn-sky" style="font-size:0.87rem;padding:0.62em 1.5em;">Đăng Ký &rarr;</a>
           </div>
         </div>
@@ -811,21 +858,41 @@
         <div class="course-card cc-coral reveal d3">
           <div class="course-banner">
             <div class="course-header">
-              <div class="course-icon">💼</div>
+              <div class="course-icon">📚</div>
               <div>
-                <div class="course-title">Professional English</div>
-                <span class="course-age">16 tuổi trở lên</span>
+                <div class="course-title">Teen Learners</div>
+                <span class="course-age">12–16 tuổi</span>
               </div>
             </div>
           </div>
           <div class="course-body">
-            <p class="course-desc">Tiếng Anh giao tiếp và kỹ năng công sở thực tế. Phù hợp với người đi làm và sinh viên muốn nâng cao trình độ cho công việc.</p>
+            <p class="course-desc">Củng cố và nâng cao 4 kỹ năng nghe–nói–đọc–viết theo chuẩn Cambridge (A2→B1/B2). Sẵn sàng chinh phục các kỳ thi quốc tế KET và PET.</p>
             <div class="course-tags">
-              <span class="course-tag">🏢 Công sở</span>
-              <span class="course-tag">🗣️ Giao tiếp</span>
-              <span class="course-tag">📊 Thuyết trình</span>
+              <span class="course-tag">🏅 KET</span>
+              <span class="course-tag">🏆 PET</span>
+              <span class="course-tag">💬 Giao tiếp</span>
             </div>
             <a href="#contact" class="btn btn-coral" style="font-size:0.87rem;padding:0.62em 1.5em;">Đăng Ký &rarr;</a>
+          </div>
+        </div>
+
+        <div class="course-card cc-indigo reveal d4">
+          <div class="course-banner">
+            <div class="course-header">
+              <div class="course-icon">💼</div>
+              <div>
+                <div class="course-title">Teen+ Adult</div>
+                <span class="course-age">Trên 15 tuổi</span>
+              </div>
+            </div>
+          </div>
+          <div class="course-body">
+            <p class="course-desc">Phát triển tiếng Anh học thuật toàn diện. Nâng cao năng lực ngôn ngữ, xây dựng tư duy học thuật và chinh phục kỳ thi IELTS (B2/C1).</p>
+            <div class="course-tags">
+              <span class="course-tag">📊 IELTS 4→5.5</span>
+              <span class="course-tag">🎯 IELTS 5→6.5</span>
+            </div>
+            <a href="#contact" class="btn" style="background:#5b6af5;color:#fff;border-color:#3d4ed8;box-shadow:4px 4px 0 #3d4ed8;font-size:0.87rem;padding:0.62em 1.5em;">Đăng Ký &rarr;</a>
           </div>
         </div>
 
@@ -843,9 +910,9 @@
       </div>
       <div class="why-grid">
         <div class="why-card reveal d1">
-          <div class="why-icon" style="background:var(--yellow);">🏆</div>
-          <div class="why-title">Giáo Viên Chứng Chỉ Quốc Tế</div>
-          <p class="why-desc">100% giáo viên có chứng chỉ CELTA / TESOL, giàu kinh nghiệm và đam mê nghề dạy học.</p>
+          <div class="why-icon" style="background:var(--yellow);">🤝</div>
+          <div class="why-title">Giáo Viên Kinh Nghiệm, Tận Tâm</div>
+          <p class="why-desc">Thầy cô không chỉ là người dạy — mà là người truyền cảm hứng, luôn nhiệt tình và gần gũi với từng học sinh.</p>
         </div>
         <div class="why-card reveal d2">
           <div class="why-icon" style="background:var(--sky-light);">👥</div>
@@ -853,9 +920,9 @@
           <p class="why-desc">Sĩ số tối đa 12 học sinh giúp giáo viên chú ý đến từng em và phát huy tối đa tiềm năng.</p>
         </div>
         <div class="why-card reveal d3">
-          <div class="why-icon" style="background:var(--coral-light);">📚</div>
-          <div class="why-title">Chương Trình Cambridge</div>
-          <p class="why-desc">Giáo trình chuẩn Cambridge được thiết kế phù hợp với học sinh Việt Nam, hiệu quả và hiện đại.</p>
+          <div class="why-icon" style="background:var(--coral-light);">🎯</div>
+          <div class="why-title">Phương Pháp Năng Động</div>
+          <p class="why-desc">Định hướng đề cao tính tương tác và sự chủ động của học sinh. Môi trường vui vẻ, tích cực, kỷ luật và định hướng rõ ràng.</p>
         </div>
         <div class="why-card reveal d4">
           <div class="why-icon" style="background:var(--green-light);">🎁</div>
@@ -864,8 +931,8 @@
         </div>
         <div class="why-card reveal d5">
           <div class="why-icon" style="background:var(--yellow-pale);">📊</div>
-          <div class="why-title">Báo Cáo Học Tập Hàng Tháng</div>
-          <p class="why-desc">Phụ huynh nhận báo cáo tiến độ học tập chi tiết mỗi tháng để theo dõi sự phát triển của con.</p>
+          <div class="why-title">Cá Nhân Hóa Trải Nghiệm Học Tập</div>
+          <p class="why-desc">Phụ huynh và học sinh được cập nhật định kỳ về tình hình học tập và sự tiến bộ, giúp định hướng lộ trình học tập rõ ràng, minh bạch.</p>
         </div>
         <div class="why-card reveal d6">
           <div class="why-icon" style="background:var(--sky-light);">🏫</div>
@@ -889,12 +956,12 @@
         <div class="testi-card reveal d1">
           <div class="testi-quote-mark">"</div>
           <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <p class="testi-text">"Con tôi trước đây rất ngại nói tiếng Anh, nhưng sau 3 tháng học tại Fun English, bé đã tự tin hẳn lên. Các thầy cô rất tận tâm và phương pháp dạy rất thú vị. Tôi thực sự hài lòng với sự tiến bộ của con!"</p>
+          <p class="testi-text">"Bé học rất vui, các cô rất tận tình. Ở đây kết hợp vừa học vừa chơi nên bé tiếp thu bài rất nhanh. Các bài học rất vui nhộn và phù hợp với bé."</p>
           <div class="testi-author">
-            <img src="https://placehold.co/80x80/fde8e4/d94f2e?text=P" alt="Chị Phương" class="testi-avatar" />
+            <img src="brand_assests/Proof 1.jpg" alt="Huyền Lương" class="testi-avatar" />
             <div>
-              <div class="testi-name">Chị Nguyễn Thị Phương</div>
-              <div class="testi-role">Phụ huynh · Little Explorers</div>
+              <div class="testi-name">Huyền Lương</div>
+              <div class="testi-role">5 reviews · 1 photo · Google</div>
             </div>
           </div>
         </div>
@@ -902,12 +969,12 @@
         <div class="testi-card reveal d2">
           <div class="testi-quote-mark">"</div>
           <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <p class="testi-text">"Tôi ghi danh lớp Professional English để chuẩn bị cho công việc. Giáo viên dạy rất thực tế, bài tập sát với môi trường làm việc. Sau 2 tháng, tôi đã tự tin họp hành bằng tiếng Anh rồi!"</p>
+          <p class="testi-text">"Bé nhà chị đã học được 1 thời gian ở Fun English rồi, bé rất thích thú với việc học cùng các cô và các bạn ở lớp. Khi về nhà bé luôn tự giác ôn bài và làm bài cô giao. Cảm ơn Fun English nhiều ạ."</p>
           <div class="testi-author">
-            <img src="https://placehold.co/80x80/e0f3fd/1a8ec9?text=M" alt="Anh Minh" class="testi-avatar" style="border-color:var(--sky);" />
+            <img src="brand_assests/Proof 3.jpg" alt="Nga Bui" class="testi-avatar" />
             <div>
-              <div class="testi-name">Anh Trần Văn Minh</div>
-              <div class="testi-role">Học viên · Professional English</div>
+              <div class="testi-name">Nga Bui</div>
+              <div class="testi-role">3 reviews · Google</div>
             </div>
           </div>
         </div>
@@ -915,16 +982,32 @@
         <div class="testi-card reveal d3">
           <div class="testi-quote-mark">"</div>
           <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <p class="testi-text">"Cả hai bé nhà tôi đều học ở đây — một bé học Little Explorers, một bé học English Boost. Cả hai đều rất thích đến lớp. Lớp học nhỏ nên các con được chú ý rất nhiều. Rất đáng đồng tiền bát gạo!"</p>
+          <p class="testi-text">"Con rất hứng thú khi đi học tại Fun English. Con đạt hiệu quả tốt sau một thời gian học tại đây. Cảm ơn các cô đã hỗ trợ con trong suốt quá trình học."</p>
           <div class="testi-author">
-            <img src="https://placehold.co/80x80/e8f7f0/3dba7e?text=L" alt="Chị Lan" class="testi-avatar" style="border-color:var(--green);" />
+            <img src="brand_assests/Proof 2.jpg" alt="Trang Đinh" class="testi-avatar" />
             <div>
-              <div class="testi-name">Chị Lê Thị Thanh Lan</div>
-              <div class="testi-role">Phụ huynh · English Boost</div>
+              <div class="testi-name">Trang Đinh</div>
+              <div class="testi-role">3 reviews · 1 photo · Google</div>
             </div>
           </div>
         </div>
 
+      </div>
+
+      <!-- 4th review: Nhung Nguyen -->
+      <div style="max-width:520px;margin:1.75rem auto 0;">
+        <div class="testi-card reveal d4" style="text-align:center;">
+          <div class="testi-quote-mark">"</div>
+          <div class="testi-stars" style="justify-content:center;"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testi-text">"Bé nhà mình nói đi học rất vui. Cô theo sát và nhận xét riêng từng bạn qua từng buổi học. Học phí rẻ. Lớp không quá đông."</p>
+          <div class="testi-author" style="justify-content:center;">
+            <img src="brand_assests/Proof 4.jpg" alt="Nhung Nguyen" class="testi-avatar" />
+            <div>
+              <div class="testi-name">Nhung Nguyen</div>
+              <div class="testi-role">Local Guide · 28 reviews · 15 photos · Google</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -944,7 +1027,7 @@
               <div class="ci-ico" style="background:var(--coral-light);">📞</div>
               <div>
                 <div class="ci-label">Hotline</div>
-                <div class="ci-val">0909 123 456</div>
+                <div class="ci-val">0975 098 749 – 0888 853 987</div>
               </div>
             </div>
             <div class="ci reveal d3">
@@ -958,21 +1041,21 @@
               <div class="ci-ico" style="background:var(--yellow-pale);">🕐</div>
               <div>
                 <div class="ci-label">Giờ Mở Cửa</div>
-                <div class="ci-val">Thứ 2–7 &nbsp;|&nbsp; 8:00 – 20:00</div>
+                <div class="ci-val">Thứ 2–Chủ Nhật &nbsp;|&nbsp; 8h–11h &amp; 16h–21h</div>
               </div>
             </div>
             <div class="ci reveal d4">
               <div class="ci-ico" style="background:var(--coral-light);">✉️</div>
               <div>
                 <div class="ci-label">Email</div>
-                <div class="ci-val">info@funenglish.vn</div>
+                <div class="ci-val">Funenglish.edu.vn@gmail.com</div>
               </div>
             </div>
           </div>
 
           <div class="map-wrap reveal d4">
             <iframe
-              src="https://maps.google.com/maps?q=Nguyen+Quang+Bich,+Tan+Binh,+Ho+Chi+Minh+City,+Vietnam&output=embed&z=16"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d244.94283617231665!2d106.64642657388606!3d10.804772731768297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175290050dece85%3A0xf110d9780f376aee!2sAnh%20Ng%E1%BB%AF%20Fun%20English!5e0!3m2!1sen!2sus!4v1773505559349!5m2!1sen!2sus"
               title="Bản đồ Anh Ngữ Fun English"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade">
@@ -1002,10 +1085,11 @@
               <label class="fl" for="f-course">Khóa Học Quan Tâm</label>
               <select class="fsel" id="f-course" name="course">
                 <option value="">-- Chọn khóa học --</option>
-                <option value="kids">🌟 Little Explorers (4–8 tuổi)</option>
-                <option value="teens">🚀 English Boost (9–15 tuổi)</option>
-                <option value="adults">💼 Professional English (16+)</option>
-                <option value="trial">🎁 Học Thử Miễn Phí</option>
+                <option value="superkids">🌟 Super Kids (4–6 tuổi)</option>
+                <option value="young">🚀 Young Learners – Starters/Movers/Flyers (6–11 tuổi)</option>
+                <option value="teen">📚 Teen Learners – KET/PET (12–16 tuổi)</option>
+                <option value="adult">💼 Teen+ Adult – IELTS (Trên 15 tuổi)</option>
+                <option value="trial">🎁 Kiểm Tra Năng Lực + Học Thử Miễn Phí</option>
                 <option value="other">Khác / Chưa Biết</option>
               </select>
             </div>
@@ -1032,11 +1116,6 @@
             <div class="footer-brand-name">Anh Ngữ Fun English</div>
           </div>
           <p class="footer-tagline">Môi trường học tập thân thiện, sáng tạo và hiệu quả cho mọi lứa tuổi. Học tiếng Anh — Tự tin tỏa sáng!</p>
-          <div class="footer-socials">
-            <a href="#" title="Facebook">fb</a>
-            <a href="#" title="YouTube">yt</a>
-            <a href="#" title="Zalo">zl</a>
-          </div>
         </div>
 
         <div>
@@ -1053,17 +1132,31 @@
         <div>
           <div class="footer-col-title">Liên Hệ</div>
           <ul class="footer-links">
-            <li>📞 0909 123 456</li>
+            <li>📞 0975 098 749 – 0888 853 987</li>
             <li>📍 12H Nguyễn Quang Bích, P. Tân Bình, TP.HCM</li>
-            <li>🕐 Thứ 2–7: 8:00 – 20:00</li>
-            <li>✉️ info@funenglish.vn</li>
           </ul>
+          <div class="footer-socials" style="margin-top:1.1rem;">
+            <a href="https://www.facebook.com/anhngufunenglish" target="_blank" rel="noopener" title="Facebook">
+              <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@anhngufunenglish" target="_blank" rel="noopener" title="TikTok">
+              <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/channel/UCqh45sdNDHOoaFjZsvDnDug" target="_blank" rel="noopener" title="YouTube">
+              <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
         </div>
 
       </div>
       <p class="footer-copy">© 2025 Anh Ngữ Fun English. All rights reserved.</p>
     </div>
   </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Xem ảnh">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Đóng">✕</button>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -1120,6 +1213,25 @@
         showToast('✅ Đã gửi! Chúng tôi sẽ liên hệ sớm nhất!');
       }, 1200);
     });
+
+    // ── Lightbox ──
+    const lb    = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    document.querySelectorAll('.testi-avatar').forEach(img => {
+      img.addEventListener('click', () => {
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
     // ── Active nav ──
     const secs = document.querySelectorAll('section[id]');
