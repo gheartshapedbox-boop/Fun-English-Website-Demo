@@ -1198,16 +1198,32 @@
     }
 
     // ── Form ──
-    document.getElementById('inquiryForm').addEventListener('submit', e => {
+    document.getElementById('inquiryForm').addEventListener('submit', async e => {
+      e.preventDefault();
       const name  = e.target.name.value.trim();
       const phone = e.target.phone.value.trim();
-      if (!name || !phone) {
-        e.preventDefault();
-        if (!name)  showToast('⚠️ Vui lòng nhập họ tên của bạn.');
-        else        showToast('⚠️ Vui lòng nhập số điện thoại.');
-        return;
+      if (!name)  { showToast('⚠️ Vui lòng nhập họ tên của bạn.'); return; }
+      if (!phone) { showToast('⚠️ Vui lòng nhập số điện thoại.'); return; }
+      const btn = e.target.querySelector('.form-btn');
+      btn.textContent = 'Đang gửi...';
+      btn.disabled = true;
+      try {
+        const res = await fetch(e.target.action, {
+          method: 'POST',
+          body: new FormData(e.target),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          e.target.reset();
+          showToast('✅ Đã gửi! Chúng tôi sẽ liên hệ sớm nhất!');
+        } else {
+          showToast('❌ Có lỗi xảy ra. Vui lòng thử lại.');
+        }
+      } catch {
+        showToast('❌ Không thể gửi. Vui lòng kiểm tra kết nối.');
       }
-      // Allow form to submit naturally to Formspree
+      btn.textContent = 'Gửi Thông Tin →';
+      btn.disabled = false;
     });
 
     // ── Lightbox ──
